@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
     gap: 2rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 2rem 0rem;
     @media screen and (min-width: 636px) {
         grid-template-columns: repeat(2, minmax(250px, max-content));
@@ -12,10 +12,12 @@
 
     @media screen and (min-width: 1024px) {
         grid-template-columns: repeat(3, minmax(20px, max-content));
+        justify-content: space-between;
       }
 
     @media screen and (min-width: 1224px) {
         grid-template-columns: repeat(4, minmax(20px, max-content));
+        justify-content: space-between;
       }
 
     .card{
