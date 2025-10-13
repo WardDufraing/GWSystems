@@ -1,5 +1,5 @@
 {
-  "name": "basetemplate",
+  "name": "MadebyWD",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.13.3"
+    "astro": "^5.14.4"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.91.0"
   }
 }

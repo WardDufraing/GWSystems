@@ -1,0 +1,43 @@
+---
+// import Social from '../components/Social.astro'
+import {footerLinks} from '../data/navLinks.ts';
+
+import '../styles/footer.scss';
+import FooterContact from './FooterContact.astro';
+---
+
+<footer class="footer">
+  <section class="footer-container">
+    <div class="footer-brand">
+      <h2 class="footer-logo">Ward Dufraing</h2>
+    </div>
+
+    <nav class="footer-nav">
+      <ul>
+        {footerLinks.map(link => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <FooterContact 
+      email="email@email.be"
+      vatNumber="0000.000.000"
+      iban="BE00 0000 0000 0000"
+      address="Halle-dorp 136/2"
+      city="2980 Zoersel"
+      phone="+32 471 23 45 67"
+    />
+
+   <!--  <article class="footer-social">
+        <Social platform="instagram" username="felineconsulting" />
+        <Social platform="pinterest" username="felineconsulting" />
+        <Social platform="linkedin" username="felineconsulting" />
+        <Social platform="facebook" username="felineconsulting" />
+    </article> -->
+  </section>
+
+  <div class="footer-bottom">
+    <p>© 2025 Ward Dufraing — Alle rechten voorbehouden.</p>
+  </div>
+</footer>

@@ -1,5 +1,17 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
+import { resolve } from 'path';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://madebywd.be',
+  scopedStyleStrategy: 'where',
+  vite: {
+    resolve: {
+      alias: {
+        '@components': resolve('./src/components'),
+        '@layouts': resolve('./src/layouts'),
+        '@styles': resolve('./src/styles'),
+        '@content': resolve('./src/content'),
+      }
+    }
+  }
+});

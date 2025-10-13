@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+@use 'variables.scss' as *;
+@use 'sass:color';
+
+/* NAV STYLES */
+.mobile-nav-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    .mobile-nav-image{
+      margin-left: 20px;
+      color: $text-color;
+      img{
+        width: auto;
+        height: 100px;
+      }
+    }
+    .hamburger {
+      padding-top: 20px;
+      padding-left: 20px;
+      margin-right: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      .hamburger-line {
+        display: block;
+        width: 40px;
+        height: 5px;
+        margin-bottom: 10px;
+        background-color: $primary-color;;
+        transition: all 0.3s ease;
+      }
+      &.open {
+        .hamburger-line:nth-child(1) {
+          transform: rotate(45deg) translateY(21px);
+        }
+        .hamburger-line:nth-child(2) {
+          opacity: 0;
+        }
+        .hamburger-line:nth-child(3) {
+          transform: rotate(-45deg) translateY(-21px);
+        }
+      }
+    } 
+  }
+  
+  
+  .nav-container{
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    &.expanded{
+      height: 150vh;
+    }
+  
+    .nav-links {
+      &.expanded {
+        display: block;
+        min-height: 40vh;
+        transform: translateY(0%);
+      }
+        width: 100%;
+        top: 5rem;
+        left: 48px;
+        display: none;
+        margin: 0;
+        .nav-link {
+            display: block;
+            text-align: center;
+            padding: 10px 0;
+            text-decoration: none;
+            font-size: $font-size-mobile-navigation;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: $text-color;
+            &:hover, :focus {
+                background-color: color.adjust($accent-color, $alpha: -0.8);
+                box-shadow: $box-shadow-inverted-medium, $box-shadow-inverted-inset-medium;
+              }
+
+          }
+          
+          
+          .header-image{
+            display: none;
+          }
+      }
+      
+      
+  }
+    
+  @media screen and (min-width: 1024px) {
+    .mobile-nav-container{
+      display: none;
+    }
+  
+    .nav-container{
+      position: relative;
+        backdrop-filter: blur($blur-amount);
+      .nav-links {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        max-height: 20vh;
+        .header-image{
+          display: inline-block;
+          min-width: 10rem;
+          max-width: 15rem;
+          color: $text-color;
+          picture img{
+            width: 100%;
+            height: auto;
+          }
+        }
+        .nav-link{
+          display: inline-block;
+          padding: 15px 20px;
+          width: 10rem;
+          &.active {
+            border-bottom: 2px solid $accent-color;
+          }
+        }
+      }
+    }
+  }
+  
+  /* END NAV STYLES */

@@ -1,0 +1,29 @@
+---
+ // Usage: <Card imageSrc="https://placehold.co/200x200" altText="Feature One" title="Feature One" text="Details about feature one." ctaText="Learn More" ctaLink="/feature-one"/>
+    interface Props {
+        imageSrc?: string;
+        altText?: string;
+        title: string;
+        text?: string;
+        ctaText?: string;
+        ctaLink?: string;
+    }
+    const { imageSrc, altText="", title, text, ctaText, ctaLink } = Astro.props;
+---
+
+<div class="card glass fade-in fade-in-up">
+    {imageSrc && (<img class="card-img" src={imageSrc} alt={altText} />)}
+    <h3 class="card-title">{title}</h3>
+    {text && (<p class="card-text">{text}</p>)}
+    {ctaLink && ctaText && 
+    (<a class="card-CTA" href={ctaLink}>
+        <span>{ctaText}</span>
+        <svg class="cta-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>)
+    }
+</div>
+
+  

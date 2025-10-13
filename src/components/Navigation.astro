@@ -1,0 +1,25 @@
+---
+import { Picture } from 'astro:assets';
+
+import { navLinks, type NavLink } from '../data/navLinks.ts';
+
+const { pageType } = Astro.props;
+---
+
+<div class="nav-container glass" id="nav-container">
+    <div class="nav-links" id="nav-links">
+        <!-- <a class="home-link" href="/">
+            <div class="header-image">
+                <Picture src="logo.png" alt="Logo"/>
+            </div>
+        </a> -->
+        <a class="home-link" href="/">
+            <div class="header-image">
+                <h2 class="nav-logo">WD LOGO</h2>
+            </div>  
+        </a>
+        {navLinks.map((link: NavLink) => (
+            <a class={`nav-link fade-in fade-in-up ${pageType === link.pageType ? 'active' : ''}`} href={link.href}>{link.label}</a>
+          ))}
+    </div>
+</div>

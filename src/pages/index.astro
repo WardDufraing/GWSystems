@@ -1,11 +1,98 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/card.astro';
+import CardGrid from '../components/cardGrid.astro';
+import '../styles/index.scss';
+
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout pageTitle="Home" pageType="index">
+	<section class="hero">
+		<div class="hero-text fade-in fade-in-up">
+			<h1>clean, fast, and scalable <span class="highlight">websites</span> for small businesses and creatives.</h1>
+			<p>This is the main content of the home page.</p>
+			<a class="hero-CTA primary-button" href="/contact">Let’s build your site</a>
+		</div>
+	</section>
+	<section class="content">
+		<h2>This is a subtitle for the content section</h2>
+		<p>This is some additional content on the home page. You can add more sections as needed to provide information about your website or services.</p>
+	</section>
+	<section class="services">
+		<h2>Our Services</h2>
+		<p>We offer a range of services to meet your needs. Explore our features below.</p>
+		<div class="service-grid">
+			<div class="service-item glass service1 fade-in fade-in-up">
+				<h3>Service One</h3>
+				<p>Details about service one.</p>
+			</div>
+			<div class="service-item glass service2 fade-in fade-in-up">
+				<h3>Service Two</h3>
+				<p>Details about service two.</p>
+			</div>
+			<div class="service-item glass service3 fade-in fade-in-up">
+				<h3>Service Three</h3>
+				<p>Details about service three.</p>
+			</div>
+			<div class="service-item glass service4 fade-in fade-in-up">
+				<h3>Service Four</h3>
+				<p>Details about service four.</p>
+			</div>
+			<div class="service-item  glass service5 fade-in fade-in-up">
+				<h3>Service Five</h3>
+				<p>Details about service five.</p>
+			</div>
+	</section>
+	<CardGrid title="Features" text="Explore the features of our product below.">
+		<Card 
+			imageSrc="https://placehold.co/200x200" 
+			altText="Feature One" 
+			title="Feature One" 
+			text="Details about feature one." 
+			ctaText="Learn More" 
+			ctaLink="/feature-one"
+		/>
+		<Card 
+			imageSrc="https://placehold.co/200x200" 
+			altText="Feature One" 
+			title="Feature One" 
+			text="Details about feature one." 
+			ctaText="Learn More" 
+			ctaLink="/feature-one"
+		/>
+		<Card 
+			imageSrc="https://placehold.co/200x200" 
+			altText="Feature One" 
+			title="Feature One" 
+			text="Details about feature one." 
+			ctaText="Learn More" 
+			ctaLink="/feature-one"
+		/>
+		<Card 
+			imageSrc="https://placehold.co/200x200" 
+			altText="Feature One" 
+			title="Feature One" 
+			text="Details about feature one." 
+			ctaText="Learn More" 
+			ctaLink="/feature-one"
+		/>
+		<Card 
+			imageSrc="https://placehold.co/200x200" 
+			altText="Feature One" 
+			title="Feature One" 
+			text="Details about feature one." 
+			ctaText="Learn More" 
+			ctaLink="/feature-one"
+		/>
+		<Card 
+			imageSrc="https://placehold.co/200x200" 
+			altText="Feature One" 
+			title="Feature One" 
+			text="Details about feature one." 
+			ctaText="Learn More" 
+			ctaLink="/feature-one"
+		/>
+	</CardGrid>
+</BaseLayout>

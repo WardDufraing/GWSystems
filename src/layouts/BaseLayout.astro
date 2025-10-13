@@ -1,0 +1,29 @@
+---
+import "@styles/global.scss";
+import Head from "../components/Head.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { pageTitle, pageType} = Astro.props; 
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<Head title={pageTitle} />
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body>
+		<Header pageType={pageType}/>
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		<script>
+			import "../scripts/navigation.js";
+			import "../scripts/fade-in.js";
+		</script>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+---
+const { title = "WD Website Template", ...props } = Astro.props;
+---
+<link rel="sitemap" href="/sitemap-index.xml">
+<title>{title}</title>
+<meta name="description" content="Welcome!">
+
+<!-- Web analytics 
+<script data-goatcounter="https://my-account.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
+
+<!-- Open Graph tags -->
+<meta property="og:title" content="Website" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.example.com/" />
+<meta property="og:description" content="Welcome" />
+<meta property="og:image" content="https://www.example.com/_astro/seo-banner.BZD7kegZ.webp">
+<meta property="og:image:alt" content="">
