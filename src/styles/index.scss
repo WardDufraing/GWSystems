@@ -30,9 +30,16 @@ section.hero{
         .hero-text{
             text-align: left;
             h1{
-                font-size: 3.5rem;
+                font-size: 1.5rem;
                 text-shadow: 1px 1px 2px $accent-color;
                 font-weight: normal;
+                @media screen and (min-width: 636px) {
+                    font-size: 3.5rem;
+                }   
+                @media screen and (min-width: 1024px) {
+                }
+                @media screen and (min-width: 1224px) {
+                }
             }
             p{
 
