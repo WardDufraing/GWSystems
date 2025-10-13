@@ -26,9 +26,9 @@
       .hamburger-line {
         display: block;
         width: 40px;
-        height: 5px;
+        height: 3px;
         margin-bottom: 10px;
-        background-color: $primary-color;;
+        background-color: color.adjust($accent-color, $lightness: -30%);
         transition: all 0.3s ease;
       }
       &.open {
