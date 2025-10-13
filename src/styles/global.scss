@@ -144,7 +144,6 @@
 
   // buttons
   .primary-button {
-    background-color: var(--fg);
     color: var(--color);
     border: none;
     border-radius: $border-radius;
@@ -154,10 +153,13 @@
     text-wrap: nowrap;
     box-shadow: $box-shadow-low, $box-shadow-inset-low;
     text-decoration: none;
+
+    width: max-content;
+    
     &:hover {
-      background-color: color.adjust($primary-color, $lightness: -10%);
-      color: color.invert($text-color);
-      box-shadow: $box-shadow-inverted-medium, $box-shadow-inverted-inset-medium;
+      background-color: color.adjust($primary-color, $lightness: 10%, $alpha: -0.9);
+      color: $text-color;
+      // box-shadow: $box-shadow-inverted-medium, $box-shadow-inverted-inset-medium;
     }
   }
 

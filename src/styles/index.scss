@@ -1,5 +1,6 @@
 
 @use 'variables.scss' as *;
+@use 'sass:color';
 
 section.hero{
         margin: 0 auto;
@@ -29,6 +30,9 @@ section.hero{
         min-height: 60vh;
         .hero-text{
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
             h1{
                 font-size: 2rem;
                 text-shadow: 1px 1px 2px $accent-color;
@@ -77,6 +81,9 @@ section.services{
             backdrop-filter: blur($blur-amount);
             //border: .5px solid $secondary-color;
             // box-shadow: $box-shadow-low, $box-shadow-inset-high;
+            &:hover{
+                background-color: color.adjust($accent-color, $alpha: -0.8);
+            }
         }
         .service1{
             grid-area: service1;
