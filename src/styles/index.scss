@@ -62,6 +62,7 @@ section.hero{
 }
 
 section.services{
+    animation: hueShift 240s linear infinite;
     text-align: center;
     .service-grid{
         display: grid;
@@ -105,13 +106,25 @@ section.services{
 
 section.content{
     text-align: center;
-    grid-template-columns: auto;
-    display: grid;
+    display: flex;
     grid-gap: 1rem;
     place-items: center;
     @media screen and (min-width: 1024px) {
-        grid-template-columns: repeat(2, 1fr);  
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
     }
     @media screen and (min-width: 1224px) {
+    }
+
+    .contentImage{
+        width: 100%;
+        max-width: 80vw;
+        height: auto;
+        @media screen and (min-width: 1024px) {
+            width: 100%;
+            max-width: 30vw;
+            height: auto;
+        }
     }
 }

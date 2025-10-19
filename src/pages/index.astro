@@ -2,9 +2,12 @@
 import { Image } from 'astro:assets';
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 import Card from '../components/card.astro';
 import CardGrid from '../components/cardGrid.astro';
 import '../styles/index.scss';
+
+import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png';
 
 ---
 
@@ -17,9 +20,10 @@ import '../styles/index.scss';
 		</div>
 	</section>
 	<section class="content">
-		<h2>Who we are + nog ne foto</h2>
 		<p>We build websites that don’t just look great — they perform.
 			We bring together both the technical and creative sides of web development. Our focus is on clean, modern sites that are fast, functional, and built to help your business grow.</p>
+		<Image src={ContentImage1} alt="A website mockup image." class="contentImage"/>
+			
 	</section>
 	<section class="services">
 		<h2>Our Services</h2>

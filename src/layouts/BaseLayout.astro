@@ -16,6 +16,7 @@ const { pageTitle, pageType} = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
+		<div class="animated-bg"></div>
 		<Header pageType={pageType}/>
 		<main>
 			<slot />
@@ -24,6 +25,7 @@ const { pageTitle, pageType} = Astro.props;
 		<script>
 			import "../scripts/navigation.js";
 			import "../scripts/fade-in.js";
+			import "../scripts/animated-bg.js";
 		</script>
 	</body>
 </html>

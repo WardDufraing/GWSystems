@@ -8,6 +8,7 @@
     display: flex;
     justify-content: space-between;
     width: 100vw;
+
     .mobile-nav-image{
       margin-left: 20px;
       color: $text-color;
@@ -29,6 +30,7 @@
         height: 3px;
         margin-bottom: 10px;
         background-color: color.adjust($accent-color, $lightness: -30%);
+        animation: hueShift 240s linear infinite;
         transition: all 0.3s ease;
       }
       &.open {
@@ -50,6 +52,7 @@
     position: absolute;
     z-index: 1000;
     width: 100%;
+
     &.expanded{
       height: 150vh;
     }
@@ -105,6 +108,8 @@
         align-items: center;
         width: auto;
         max-height: 20vh;
+        animation: hueShift 240s linear infinite;
+
         .header-image{
           display: inline-block;
           min-width: 10rem;
