@@ -14,7 +14,8 @@
       color: $text-color;
       img{
         width: auto;
-        height: 100px;
+        height: 50px;
+        padding-top: 10px;
       }
     }
     .hamburger {
@@ -30,7 +31,6 @@
         height: 3px;
         margin-bottom: 10px;
         background-color: color.adjust($accent-color, $lightness: -30%);
-        animation: hueShift 240s linear infinite;
         transition: all 0.3s ease;
       }
       &.open {
@@ -52,9 +52,23 @@
     position: absolute;
     z-index: 1000;
     width: 100%;
+    display: flex;
+
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur($blur-amount) saturate(180%);
+    -webkit-backdrop-filter: blur($blur-amount) saturate(180%);
+    box-shadow: $box-shadow-glass;
+    overflow: hidden;
 
     &.expanded{
       height: 150vh;
+    }
+    .header-image{
+      display: none;
+    }
+    .nav-contact{
+      display: none;
     }
   
     .nav-links {
@@ -76,18 +90,18 @@
             font-size: $font-size-mobile-navigation;
             font-weight: bold;
             text-transform: uppercase;
+            letter-spacing: 1px;
             color: $text-color;
             &:hover, :focus {
-                background-color: color.adjust($accent-color, $alpha: -0.8);
-                box-shadow: $box-shadow-inverted-medium, $box-shadow-inverted-inset-medium;
+                border-bottom: 2px solid $accent-color;
               }
 
           }
+        .contact-link{
+          margin: 20px 0px;
+        }
           
           
-          .header-image{
-            display: none;
-          }
       }
       
       
@@ -100,33 +114,50 @@
   
     .nav-container{
       position: relative;
-        backdrop-filter: blur($blur-amount);
-      .nav-links {
+      backdrop-filter: blur($blur-amount);
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+
+      background: none;
+      border: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      overflow: hidden;
+
+        .header-image{
+          display: inline-block;
+          min-width: 10rem;
+          max-width: 10rem;
+          color: $text-color;
+          padding-right: 10px;
+          img{
+            width: 100%;
+            height: auto;
+          }
+        }
+        .nav-contact{
+          display: inline-block;
+        }
+        .nav-links {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         width: auto;
         max-height: 20vh;
-        animation: hueShift 240s linear infinite;
-
-        .header-image{
-          display: inline-block;
-          min-width: 10rem;
-          max-width: 15rem;
-          color: $text-color;
-          picture img{
-            width: 100%;
-            height: auto;
-          }
-        }
+        
         .nav-link{
           display: inline-block;
           padding: 15px 20px;
-          width: 10rem;
+          font-size: $font-size-desktop-navigation;
           &.active {
             border-bottom: 2px solid $accent-color;
           }
+        }
+        .contact-link{
+          margin: 0px 10px;
         }
       }
     }

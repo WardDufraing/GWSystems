@@ -5,11 +5,9 @@ export interface NavLink {
   };
   
 export const navLinks = [
-    { href: "/", label: "Home", pageType: "index" },
     { href: "/about", label: "Over ons", pageType: "about" },
     { href: "/services", label: "Diensten", pageType: "services" },
     { href: "/portfolio", label: "Portfolio", pageType: "portfolio" },
-    { href: "/contact", label: "Contact", pageType: "contact" },
     { href: "/blog", label: "Blog", pageType: "blog" },
   ];
 

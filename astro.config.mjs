@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import { resolve } from 'path';
 
 export default defineConfig({
-  site: 'https://madebywd.be',
+  site: 'https://StudioFraktal.be',
   scopedStyleStrategy: 'where',
   vite: {
     resolve: {

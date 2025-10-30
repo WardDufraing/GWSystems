@@ -5,11 +5,15 @@
 section.hero{
         margin: 0 auto;
 
-        padding: 0 2rem;
+        padding: 2rem 2rem;
         text-align: center;
 
         backdrop-filter: blur($blur-amount);
-
+        -webkit-backdrop-filter: blur($blur-amount);
+        background-image: url('../assets/images/BackgroundAssets/Background_Abstract_3.png');
+        background-repeat: no-repeat;
+        background-size: 50%;
+        background-position: -30% 0%;
 
         /*
         border-bottom-left-radius: 100% 20%;
@@ -26,8 +30,11 @@ section.hero{
         display: grid;
         grid-gap: 1rem;
         place-items: center;
+
+        @media screen and (min-width: 1024px) {
+            min-height: 60vh;
+        }
         
-        min-height: 60vh;
         .hero-text{
             text-align: left;
             display: flex;
@@ -62,44 +69,52 @@ section.hero{
 }
 
 section.services{
-    animation: hueShift 240s linear infinite;
-    text-align: center;
-    .service-grid{
+    display: flex;
+    text-align: left;
+    .services-grid{
         display: grid;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;  
-        place-items: center;
-        gap: .5rem;
-        grid-template-areas: 
-        "service1 service1 service2 service2 service2"
-        "service1 service1 service2 service2 service2"
-        "service1 service1 service4 service5 service5"
-        "service3 service3 service4 service5 service5"
-        "service3 service3 service4 service5 service5";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 1rem;
         .service-item{
-            width: 100%;
-            height: 100%;
-            border-radius: $border-radius;
-            backdrop-filter: blur($blur-amount);
-            //border: .5px solid $secondary-color;
-            // box-shadow: $box-shadow-low, $box-shadow-inset-high;
+            padding: 1rem;
+
             &:hover{
-                background-color: color.adjust($accent-color, $alpha: -0.8);
+                rotate: -2deg;
+                transition: rotate 0.3s;
             }
-        }
-        .service1{
-            grid-area: service1;
-        }
-        .service2{
-            grid-area: service2;
-        }
-        .service3{
-            grid-area: service3;
-        }
-        .service4{
-            grid-area: service4;    
-        }
-        .service5{
-            grid-area: service5;    
+            
+            .service-title{
+                min-height: 35%;
+            }
+            .service-list{
+                padding-bottom: 1rem;
+            }
+
+            &.service1{
+                background-image: url('../assets/images/BackgroundAssets/Background_Abstract_Small_1.png');
+                background-position: 50% 80%;
+                background-repeat: no-repeat;
+                background-size: 200%;
+            }
+            &.service2{
+                background-image: url('../assets/images/BackgroundAssets/Background_Abstract_Small_2.png');
+                background-position: 0%;
+                background-repeat: no-repeat;
+                background-size: 200%;
+            }
+            &.service3{
+                background-image: url('../assets/images/BackgroundAssets/Background_Abstract_Small_3.png');
+                background-position: 80% 10%;
+                background-repeat: no-repeat;
+                background-size: 200%;
+            }
+            &.service4{
+                background-image: url('../assets/images/BackgroundAssets/Background_Abstract_Small_1.png');
+                background-position: 100%;
+                background-repeat: no-repeat;
+                background-size: 200%;
+            }
         }
     }
 }

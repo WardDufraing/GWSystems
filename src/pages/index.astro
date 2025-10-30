@@ -14,41 +14,57 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 <BaseLayout pageTitle="Home" pageType="index">
 	<section class="hero">
 		<div class="hero-text fade-in fade-in-up">
-			<h1>Building fast, modern websites that help your business <span class="highlight">stand out</span></h1>
-			<!-- <p>This is the main content of the home page.</p>  -->
+			<h1 class="hero-header">We shape what’s next<span class="highlight">.</span></h1>
+			<p class="hero-subtext">Studio Fraktal is een digitaal design- en webcollectief.
+				Wij creëren merken en ervaringen die klaar zijn voor de toekomst.</p>
 			<a class="hero-CTA primary-button" href="/contact">Let’s build your site</a>
 		</div>
 	</section>
-	<section class="content">
+	<!-- <section class="content">
 		<p>We build websites that don’t just look great — they perform.
 			We bring together both the technical and creative sides of web development. Our focus is on clean, modern sites that are fast, functional, and built to help your business grow.</p>
 		<Image src={ContentImage1} alt="A website mockup image." class="contentImage"/>
 			
-	</section>
+	</section> -->
 	<section class="services">
-		<h2>Our Services</h2>
-		<p>We offer a range of services to meet your needs. Explore our features below.</p>
-		<div class="service-grid">
+		<div class="services-intro fade-in fade-in-up">
+			<h2>Our Services</h2>
+			<p>We offer a range of services to meet your needs. Explore our features below.</p>
+		</div>
+		<div class="services-grid fade-in fade-in-up">
 			<div class="service-item glass service1 fade-in fade-in-up">
-				<h3>Web development</h3>
-				<p>Custom, fast, and responsive websites built to fit your brand and business goals.</p>
+				<h2 class="service-title">Creative</h2>
+				<ul class="service-list">
+					<li>Branding</li>
+					<li>UI/UX Design</li>
+					<li>Graphic Design</li>
+				</ul>
 			</div>
 			<div class="service-item glass service2 fade-in fade-in-up">
-				<h3>SEO & Performance Optimization</h3>
-				<p>Optimized for speed and visibility so your site ranks higher and loads instantly.</p>
+				<h2 class="service-title">Marketing & Advertising</h2>
+				<ul class="service-list">
+					<li>Social Media Management</li>
+					<li>Google Ads</li>
+					<li>Conversion Optimization</li>
+				</ul>
 			</div>
 			<div class="service-item glass service3 fade-in fade-in-up">
-				<h3>Design / UI Polish</h3>
-				<p>Clean, modern visuals that make your website stand out while staying user-friendly.</p>
+				<h2 class="service-title">development</h2>
+				<ul class="service-list">
+					<li>Website Development</li>
+					<li>Mobile Design & Development</li>
+					<li>Content Management Systems</li>
+				</ul>
 			</div>
 			<div class="service-item glass service4 fade-in fade-in-up">
-				<h3>Branding & Integration</h3>
-				<p>Cohesive visuals that tell your story and give your business a recognizable look.</p>
+				<h2 class="service-title">Branding & Integration</h2>
+				<ul class="service-list">
+					<li>Brand Strategy</li>
+					<li>Logo Design</li>
+					<li>Brand Guidelines</li>
+				</ul>
 			</div>
-			<div class="service-item  glass service5 fade-in fade-in-up">
-				<h3>Maintenance & Support</h3>
-				<p>Regular updates, backups, and tweaks to keep your site secure and performing smoothly.</p>
-			</div>
+		</div>			
 	</section>
 	<CardGrid title="Features" text="Explore the features of our product below.">
 		<Card 

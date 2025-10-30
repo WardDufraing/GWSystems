@@ -1,13 +1,14 @@
 ---
-import { Picture } from 'astro:assets';
-// import orangeLogo from '../../public/Logo_Orange.png';
+import { Image } from 'astro:assets';
+import NavImage from '../assets/images/LogoNav.png';
+
 ---
 <div class="mobile-nav-container glass">
   <!-- <div class="mobile-nav-image">
     <Picture src={orangeLogo} alt="Logo"/>
 </div> -->
     <div class="mobile-nav-image">
-    <h2 class="">WD LOGO</h2>
+      <Image src={NavImage} alt="Studio Fraktal" class="navLogoImg"/>
     </div>
 
   <div class="hamburger" id="hamburger">
