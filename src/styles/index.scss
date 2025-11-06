@@ -2,71 +2,143 @@
 @use 'variables.scss' as *;
 @use 'sass:color';
 
-section.hero{
-        margin: 0 auto;
+/* ====== Tunables ====== */
+:root {
+    --glass-bg: hsla(0 0% 100% / 0.08);        /* frosted fill */
+    --glass-tint: hsla(210 90% 60% / 0.08);    /* faint color tint; match your brand hue */
+    --glass-blur: 18px;                        /* backdrop blur radius */
+    --glass-radius: 22px;
+    --glass-border: 1px;
+    --glass-border-outer: hsla(0 0% 100% / 0.14);
+    --glass-border-inner: hsla(0 0% 100% / 0.35);
+    --glass-shadow: 0 10px 30px -10px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.08) inset;
+    --glass-noise-opacity: .05;                /* increase for stronger grain */
+    --glare-duration: 3s;
+    --glare-delay: 2s;
+  }
 
-        padding: 2rem 2rem;
-        text-align: center;
+section.hero {
+    overflow: hidden;
+    display: grid;
+    grid-gap: 1rem;
+    place-items: center;
 
-        backdrop-filter: blur($blur-amount);
-        -webkit-backdrop-filter: blur($blur-amount);
+    @media screen and (min-width: 1024px) {
+        min-height: 60vh;
+    }
+
+    /* Optional: if your background lives here, this prevents stacking issues */
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
         background-image: url('../assets/images/BackgroundAssets/Background_Abstract_3.png');
         background-repeat: no-repeat;
         background-size: 50%;
         background-position: -30% 0%;
+    }
 
-        /*
-        border-bottom-left-radius: 100% 20%;
-        border-bottom-right-radius: 100% 20%;
-        border-bottom: 1px solid $secondary-color;
-        box-shadow: $box-shadow-high;
-        -moz-box-shadow: $box-shadow-high;
-        -webkit-box-shadow: $box-shadow-high; */
+    /* ====== Glass card ====== */
+    .glass-card {
+        z-index: 10;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            background:
+              radial-gradient(120% 100% at 50% -20%, rgba(255,255,255,.16), transparent 50%) /* top bloom */,
+              radial-gradient(90% 60% at 50% 100%, rgba(255,255,255,.06), transparent 70%)   /* bottom lift */;
+            mix-blend-mode: screen;
+        }
+        /* Hairline “chromatic” rim using a gradient stroke */
+        .glass-border {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            mask-composite: exclude;
+            padding: var(--glass-border);
+            background:
+                conic-gradient(from 180deg at 50% 50%,
+                hsla(0 0% 100% / .6),
+                hsla(200 80% 70% / .5),
+                hsla(300 80% 70% / .4),
+                hsla(0 0% 100% / .6) 360deg);
+            opacity: .65;
+        }
 
-        border-radius: $border-radius;
-
-        box-shadow: $box-shadow-glass;
-
-        display: grid;
-        grid-gap: 1rem;
-        place-items: center;
-
-        @media screen and (min-width: 1024px) {
-            min-height: 60vh;
+        /* Super-faint grain so it feels like a surface, not a PNG */
+        .glass-noise {
+            position: absolute;
+            inset: -50%;
+            pointer-events: none;
+            background-image:
+            radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.5), transparent),
+            radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,.5), transparent),
+            radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,.5), transparent),
+            radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,.5), transparent);
+            background-size: 180px 180px, 190px 190px, 200px 200px, 210px 210px;
+            opacity: var(--glass-noise-opacity);
+            filter: contrast(120%);
+            mix-blend-mode: overlay;
         }
         
-        .hero-text{
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            h1{
-                font-size: 2rem;
-                text-shadow: 1px 1px 2px $accent-color;
-                font-weight: normal;
-                @media screen and (min-width: 636px) {
-                    font-size: 3.5rem;
-                }   
-                @media screen and (min-width: 1024px) {
-                }
-                @media screen and (min-width: 1224px) {
-                }
-            }
-            p{
+        /* ====== One-time glare sweep on load ====== */
+        .glass-glare {
+            position: absolute;
+            inset: -20% -60%;
+            pointer-events: none;
+            transform: rotate(8deg) skewX(-12deg);
+            background:
+            linear-gradient(90deg,
+                transparent 0%,
+                rgba(255,255,255,.02) 20%,
+                rgba(255,255,255,.45) 48%,
+                rgba(255,255,255,.06) 60%,
+                transparent 75%);
+            filter: blur(6px);
+            opacity: 0;
+            animation: glare-sweep var(--glare-duration) cubic-bezier(.18,.72,.15,1) var(--glare-delay) 1 both;
+        }
 
+        h1{
+            font-size: 2rem;
+            text-shadow: 1px 1px 2px $accent-color;
+            font-weight: normal;
+            @media screen and (min-width: 636px) {
+                font-size: 3.5rem;
+            }   
+            @media screen and (min-width: 1024px) {
+            }
+            @media screen and (min-width: 1224px) {
             }
         }
 
-        .photo-wrapper {
-            overflow: hidden;
-            border-radius: 40% 10% 40% 0%; /* curves */
-            display: inline-block;
-            img{
-                max-width: 100%;
-                display: block;
-            }
-          }
-}
+        .cta{
+            padding: 1em 0px;
+        }
+    }
+  }
+
+  @keyframes glare-sweep {
+    0%   { transform: translateX(-40%) rotate(8deg) skewX(-12deg); opacity: 0; }
+    12%  { opacity: .8; }
+    45%  { opacity: .85; }
+    100% { transform: translateX(110%) rotate(8deg) skewX(-12deg); opacity: 0; }
+  }
 
 section.services{
     display: flex;
