@@ -14,7 +14,7 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 <BaseLayout pageTitle="Home" pageType="index">
 	<section class="hero fade-in fade-in-up">
 		<div class="hero-bg"></div>
-		<div class="glass-card glass-border" aria-label="Intro card">
+		<div class="glass-card" aria-label="Intro card">
 			<span class="glass-border" aria-hidden="true"></span>
 			<span class="glass-noise" aria-hidden="true"></span>
 			<span class="glass-glare" aria-hidden="true"></span>
@@ -28,53 +28,212 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 			</div>
 		</div>
 	</section>
-	<!-- <section class="content">
-		<p>We build websites that don’t just look great — they perform.
-			We bring together both the technical and creative sides of web development. Our focus is on clean, modern sites that are fast, functional, and built to help your business grow.</p>
-		<Image src={ContentImage1} alt="A website mockup image." class="contentImage"/>
-			
-	</section> -->
-	<section class="services">
-		<div class="services-intro fade-in fade-in-up">
-			<h2>Our Services</h2>
-			<p>We offer a range of services to meet your needs. Explore our features below.</p>
+
+	<section id="services" class="services" aria-labelledby="services-title">
+		<div class="wrap">
+		  <header class="services-head">
+			<p class="eyebrow">Wat we doen</p>
+			<h2 id="services-title">Onze services</h2>
+			<p class="lead">
+			  Van merkstrategie tot razendsnelle websites—één team dat ontwerpt <em>en</em> bouwt.
+			</p>
+		  </header>
+	  
+		  <ul class="service-grid fade-in fade-in-right" role="list">
+			<!-- 1) Branding & Strategie -->
+			<li class="service-card glass">
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="icon" aria-hidden="true">
+				<!-- inline SVG icon -->
+				<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
+				  <path d="M4 7h16M4 12h10M4 17h7"/>
+				</svg>
+			  </div>
+	  
+			  <h3>Branding & Strategie</h3>
+			  <p class="sub">Merkfundamenten die keuzes eenvoudiger en sterker maken.</p>
+			  <ul class="bullets">
+				<li>Merkstrategie & naming</li>
+				<li>Logo & brand guidelines</li>
+				<li>Tonaliteit & messaging</li>
+			  </ul>
+			  <a class="text-link" href="/diensten#branding" aria-label="Lees meer over Branding en Strategie">
+				Lees meer →
+			  </a>
+			</li>
+	  
+			<!-- 2) Design & Experience -->
+			<li class="service-card glass">
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
+				  <rect x="3" y="4" width="18" height="14" rx="3"/>
+				  <path d="M3 9h18M9 17l3-3 3 3"/>
+				</svg>
+			  </div>
+	  
+			  <h3>Design & Experience</h3>
+			  <p class="sub">Heldere interfaces, micro-interacties en consistente componenten.</p>
+			  <ul class="bullets">
+				<li>UI/UX & prototyping</li>
+				<li>Design systems</li>
+				<li>Motion & micro-interacties</li>
+			  </ul>
+			  <a class="text-link" href="/diensten#design">Bekijk aanpak →</a>
+			</li>
+	  
+			<!-- 3) Webontwikkeling -->
+			<li class="service-card glass popular">
+			  <span class="badge">Populair</span>
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
+				  <path d="M4 5h16v10H4z"/><path d="M2 19h20"/>
+				  <path d="M8 9l2 2-2 2M16 13l-2-2 2-2"/>
+				</svg>
+			  </div>
+	  
+			  <h3>Webontwikkeling</h3>
+			  <p class="sub">Razendsnelle sites met Astro/React, klaar voor groei.</p>
+			  <ul class="bullets">
+				<li>Volledig op maat</li>
+				<li>Formulieren & integraties</li>
+				<li>Hosting & monitoring</li>
+			  </ul>
+			  <a class="text-link" href="/diensten#web">Technische stack →</a>
+			</li>
+	  
+			<!-- 4) Performance & SEO -->
+			<li class="service-card glass">
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
+				  <path d="M21 12a9 9 0 1 1-9-9"/><path d="M12 3v9l5 3"/>
+				</svg>
+			  </div>
+	  
+			  <h3>Performance & SEO</h3>
+			  <p class="sub">Meetbare winst: snellere laadtijden en beter gevonden.</p>
+			  <ul class="bullets">
+				<li>Core Web Vitals (LCP/CLS)</li>
+				<li>Technische SEO & schema</li>
+				<li>Content & zoekintentie</li>
+			  </ul>
+			  <a class="text-link" href="/diensten#performance">Onze audits →</a>
+			</li>
+		  </ul>
+	  
+		  <div class="services-cta">
+			<a class="primary-button" href="/contact">Plan een kennismaking</a>
+			<a class="primary-button" href="/diensten">Ontdek alle diensten</a>
+		  </div>
 		</div>
-		<div class="services-grid fade-in fade-in-up">
-			<div class="service-item glass service1 fade-in fade-in-up">
-				<h2 class="service-title">Creative</h2>
-				<ul class="service-list">
-					<li>Branding</li>
-					<li>UI/UX Design</li>
-					<li>Graphic Design</li>
-				</ul>
-			</div>
-			<div class="service-item glass service2 fade-in fade-in-up">
-				<h2 class="service-title">Marketing & Advertising</h2>
-				<ul class="service-list">
-					<li>Social Media Management</li>
-					<li>Google Ads</li>
-					<li>Conversion Optimization</li>
-				</ul>
-			</div>
-			<div class="service-item glass service3 fade-in fade-in-up">
-				<h2 class="service-title">development</h2>
-				<ul class="service-list">
-					<li>Website Development</li>
-					<li>Mobile Design & Development</li>
-					<li>Content Management Systems</li>
-				</ul>
-			</div>
-			<div class="service-item glass service4 fade-in fade-in-up">
-				<h2 class="service-title">Branding & Integration</h2>
-				<ul class="service-list">
-					<li>Brand Strategy</li>
-					<li>Logo Design</li>
-					<li>Brand Guidelines</li>
-				</ul>
-			</div>
-		</div>			
+	  </section>
+
+	  <section id="proces" class="process" aria-labelledby="process-title">
+		<div class="wrap">
+		  <header class="process-head">
+			<p class="eyebrow">Hoe we werken</p>
+			<h2 id="process-title">Proces</h2>
+			<p class="lead">In vier duidelijke stappen—van idee tot groei.</p>
+		  </header>
+	  
+		  <!-- animated progress line -->
+		  <div class="progress-wrap" aria-hidden="true">
+			<span class="progress-line"></span>
+		  </div>
+	  
+		  <ol class="process-steps" role="list">
+			<!-- Step 1 -->
+			<li class="step glass">
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="step-head">
+				<span class="step-index">1</span>
+				<h3>Discover</h3>
+			  </div>
+			  <p class="sub">Doelen, doelgroep en scope scherpstellen.</p>
+			  <ul class="bullets">
+				<li>Kick-off & requirements</li>
+				<li>Merk/markt-context</li>
+				<li>Prioriteiten & planning</li>
+			  </ul>
+			  <small class="meta">Doorlooptijd: 2–5 dagen</small>
+			</li>
+	  
+			<!-- Step 2 -->
+			<li class="step glass">
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="step-head">
+				<span class="step-index">2</span>
+				<h3>Design</h3>
+			  </div>
+			  <p class="sub">Wireframes, visueel ontwerp en interacties.</p>
+			  <ul class="bullets">
+				<li>UI/UX & prototyping</li>
+				<li>Design system elementen</li>
+				<li>Review & iteratie</li>
+			  </ul>
+			  <small class="meta">Doorlooptijd: 1–2 weken</small>
+			</li>
+	  
+			<!-- Step 3 -->
+			<li class="step glass">
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="step-head">
+				<span class="step-index">3</span>
+				<h3>Build</h3>
+			  </div>
+			  <p class="sub">Development, CMS, performance & QA.</p>
+			  <ul class="bullets">
+				<li>Astro/React build</li>
+				<li>Integraties & formulieren</li>
+				<li>Core Web Vitals check</li>
+			  </ul>
+			  <small class="meta">Doorlooptijd: 2–4 weken</small>
+			</li>
+	  
+			<!-- Step 4 -->
+			<li class="step glass">
+			  <span class="glass-border" aria-hidden="true"></span>
+			  <span class="glass-noise" aria-hidden="true"></span>
+	  
+			  <div class="step-head">
+				<span class="step-index">4</span>
+				<h3>Launch & Grow</h3>
+			  </div>
+			  <p class="sub">Oplevering, training en continue optimalisatie.</p>
+			  <ul class="bullets">
+				<li>Deploy & analytics</li>
+				<li>CMS training</li>
+				<li>SEO/Content iteraties</li>
+			  </ul>
+			  <small class="meta">Doorlopend</small>
+			</li>
+		  </ol>
+	  
+		  <div class="process-cta">
+			<a class="primary-button" href="/contact">Plan een kennismaking</a>
+			<a class="primary-button" href="/diensten">Bekijk alle diensten</a>
+		  </div>
+		</div>
 	</section>
-	<CardGrid title="Features" text="Explore the features of our product below.">
+	  
+
+	<!-- <CardGrid title="Features" text="Explore the features of our product below.">
 		<Card 
 			imageSrc="https://placehold.co/200x200" 
 			altText="Feature One" 
@@ -107,5 +266,5 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 			ctaText="Learn More" 
 			ctaLink="/feature-one"
 		/>
-	</CardGrid>
+	</CardGrid> -->
 </BaseLayout>
