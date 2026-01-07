@@ -1,0 +1,28 @@
+---
+const pathname = Astro.url.pathname;
+
+// helper: active if exact match OR path starts with it (for nested routes)
+const isActive = (href) => {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+};
+
+const links = [
+  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<nav class="main-nav" aria-label="Main navigation">
+  {links.map((l) => (
+    <a
+      href={l.href}
+      class:list={["nav-link", isActive(l.href) && "is-active"]}
+      aria-current={isActive(l.href) ? "page" : undefined}
+    >
+      {l.label}
+    </a>
+  ))}
+</nav>

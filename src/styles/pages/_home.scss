@@ -1,0 +1,424 @@
+@use '../core/mixins' as m;
+
+/* ----------------------------------------------------------
+   Home – Hero
+-----------------------------------------------------------*/
+
+.home-hero {
+    margin-top: 24px;
+  
+    /* Full-width soft surface */
+    .hero-surface {
+      background: color-mix(in oklab, var(--surface) 70%, transparent);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+  
+      padding: 48px 12px 56px;
+  
+      .hero-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+  
+        .hero-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--r-lg);
+          box-shadow: var(--shadow-raised);
+  
+          padding: 32px 24px;
+          text-align: left;
+  
+          .hero-title {
+            margin: 0 0 14px;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            letter-spacing: -0.035em;
+            line-height: 1.05;
+            color: var(--text);
+  
+            .highlight {
+              color: var(--accent);
+            }
+          }
+  
+          .hero-lead {
+            margin: 0 0 22px;
+            max-width: 62ch;
+            color: var(--muted);
+            font-size: 1.1rem;
+            line-height: 1.55;
+          }
+  
+          .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+
+            isolation: isolate;
+
+            .btn{
+                position: relative;
+                z-index: 0;
+            }
+          }
+        }
+      }
+    }
+  
+    /* Desktop breathing room */
+    @media (min-width: 900px) {
+      .hero-surface {
+        padding: 72px 24px 80px;
+  
+        .hero-wrap {
+          .hero-card {
+            padding: 44px 40px;
+          }
+        }
+      }
+    }
+  }
+
+/* ----------------------------------------------------------
+   Home – Services grid
+-----------------------------------------------------------*/
+.home-services {
+    .services-head {
+      max-width: 56ch;
+  
+      h2 {
+        margin: 0;
+      }
+  
+      .services-lead {
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+    }
+  
+    .services-grid {
+      display: grid;
+      gap: 16px;
+  
+      @media (min-width: 600px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+  
+      @media (min-width: 1100px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  
+    .service-card {
+      @include m.neu-raised(var(--r-lg));
+  
+      padding: 18px;
+      background: var(--surface);
+      color: var(--text);
+  
+      display: flex;
+      flex-direction: column;
+      gap: var(--stack-2);
+  
+      transition: transform var(--dur) var(--ease),
+                  box-shadow var(--dur) var(--ease);
+  
+      &:hover {
+        filter: brightness(1.01);
+      }
+  
+      h3 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+  
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+  
+      .service-link {
+        margin-top: auto;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--accent);
+      }
+    }
+  }
+  
+/* ----------------------------------------------------------
+   Home – Process section
+-----------------------------------------------------------*/
+.home-process {
+    .process-surface {
+        background: color-mix(in oklab, var(--surface) 70%, transparent);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    
+        padding: 32px 0; /* banner padding */
+      }
+  .process-head {
+    max-width: 64ch;
+
+    .process-eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h2 { margin: 0; }
+
+    .process-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+  }
+
+  /* Flow container */
+  .process-flow {
+    --rail: color-mix(in oklab, var(--accent) 70%, transparent);
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: grid;
+    gap: 22px;
+    position: relative;
+
+    /* vertical rail (mobile/tablet) */
+    &::before {
+      content: "";
+      position: absolute;
+      left: 28px;           /* aligns with node center */
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--rail), transparent);
+      border-radius: 999px;
+      opacity: 0.9;
+    }
+  }
+
+  .process-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  /* Node */
+  .process-node {
+    width: 56px;
+    height: 56px;
+    position: relative;
+    display: grid;
+
+    @include m.neu-raised(var(--r-lg));
+    background: var(--surface);
+
+    .node-icon {
+      font-weight: 800;
+      color: color-mix(in oklab, var(--text) 70%, transparent);
+      font-size: 1rem;
+      transform: translateY(1px);
+      text-align: center;
+    }
+  }
+
+  /* Text (no card) */
+  .process-text {
+    padding-top: 6px; /* aligns baseline with node */
+
+    h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 58ch;
+    }
+  }
+
+  /* Optional: subtle, non-clicky hover feedback */
+  .process-item {
+    transition: filter var(--dur) var(--ease);
+
+    &:hover {
+      filter: brightness(1.01);
+    }
+  }
+
+  /* Desktop: turn it into a horizontal "connected" flow */
+  @media (min-width: 1000px) {
+    .process-flow {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+
+      &::before {
+        left: 4%;
+        right: 4%;
+        top: 28px;     /* rail across node centers */
+        bottom: auto;
+        height: 2px;
+        width: auto;
+        background: linear-gradient(90deg, transparent, var(--rail), transparent);
+      }
+    }
+
+    .process-item {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .process-text {
+      padding-top: 0;
+
+      p {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@media (min-width: 900px) {
+    .process-surface {
+      padding: 44px 0;
+    }
+  }
+
+/* ----------------------------------------------------------
+   Home – Credibility section
+-----------------------------------------------------------*/
+.home-cred {
+    .cred-line {
+      margin: 0;
+      text-align: center;
+  
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+  
+      span {
+        margin: 0 6px;
+        opacity: 0.5;
+      }
+    }
+  }
+
+/* ----------------------------------------------------------
+   Home – Principles section
+-----------------------------------------------------------*/
+.home-principles {
+  .principles-head {
+    max-width: 70ch;
+    margin: 0 auto 16px;
+    text-align: center;
+
+    h2 { margin: 0 0 6px; }
+    p { margin: 0; color: var(--muted); line-height: 1.55; }
+  }
+
+  .principles-list {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    max-width: 900px;
+
+    display: grid;
+    gap: 14px;
+
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+  }
+
+  .principle {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 12px;
+    align-items: start;
+
+    /* subtle, non-clicky feedback like your cards */
+    transition: filter var(--dur) var(--ease);
+
+    &:hover {
+      filter: brightness(1.01);
+    }
+  }
+
+  .p-text {
+    h3 {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+  }
+}
+
+
+/* ----------------------------------------------------------
+   Home – Final CTA section
+-----------------------------------------------------------*/
+.home-final-cta {
+  .cta-panel {
+    @include m.neu-raised(var(--r-lg));
+    background: var(--surface);
+    padding: 22px;
+
+    display: grid;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .cta-text {
+    h2 {
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (min-width: 900px) {
+    .cta-panel {
+      padding: 28px;
+      grid-template-columns: 1.4fr 0.6fr;
+    }
+
+    .cta-actions {
+      justify-content: flex-end;
+    }
+  }
+}

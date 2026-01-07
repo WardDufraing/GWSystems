@@ -1,0 +1,111 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 12px;
+    transition: padding var(--dur) var(--ease);
+  }
+  
+  /* Mobile base layout */
+  .header-inner {
+    max-width: 100%;
+    margin: 0 auto;
+  
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+  
+    padding: 10px 14px;
+  
+    background: var(--surface);
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-raised);
+
+    transition:
+    box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+  }
+
+  /* Scrolled state */
+.site-header.is-scrolled {
+    padding: 8px 12px; /* slightly tighter */
+  }
+  
+  .site-header.is-scrolled .header-inner {
+    box-shadow: var(--shadow-soft);
+    background: color-mix(in oklab, var(--surface) 96%, transparent);
+    transform: translateY(-10px);
+  }
+  
+  /* Logo */
+  .logo {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  
+  /* Hide desktop CTA on mobile */
+  .header-cta {
+    display: none;
+  }
+  
+  /* Hamburger */
+  .nav-toggle {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+  
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-raised);
+  
+    display: grid;
+    place-items: center;
+  
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  /* Nice “two-line” icon */
+  .nav-toggle__icon {
+    width: 18px;
+    height: 12px;
+    position: relative;
+    display: block;
+  }
+  .nav-toggle__icon::before,
+  .nav-toggle__icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: color-mix(in oklab, var(--text) 70%, transparent);
+  }
+  .nav-toggle__icon::before { top: 0; }
+  .nav-toggle__icon::after { bottom: 0; }
+  
+  /* Desktop enhancement */
+  @media (min-width: 768px) {
+    .header-inner {
+      max-width: 1200px;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+    }
+  
+    .header-cta {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    .nav-toggle {
+      display: none;
+    }
+  }
+  

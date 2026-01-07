@@ -1,0 +1,43 @@
+@use '../core/mixins' as m;
+.node-dot {
+    position: relative;
+    flex-shrink: 0;
+    top: 10px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 18%, transparent);
+    opacity: 0.95;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 3px;
+        border-radius: 999px;
+    
+        background: var(--accent);
+        box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 14%, transparent);
+        opacity: 0.95;
+      }
+
+      /* Size variants */
+    &--sm {
+        width: 10px;
+        height: 10px;
+
+        &::after {
+        inset: 2.5px;
+        }
+    }
+
+    &--lg {
+        width: 14px;
+        height: 14px;
+
+        &::after {
+        inset: 3.5px;
+        }
+    }
+}

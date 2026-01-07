@@ -1,31 +1,26 @@
 ---
-import "@styles/global.scss";
-import Head from "../components/Head.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-
-const { pageTitle, pageType} = Astro.props; 
+import "../styles/main.scss";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<Head title={pageTitle} />
-		<meta name="generator" content={Astro.generator} />
-	</head>
-	<body>
-		<div class="animated-bg"></div>
-		<Header pageType={pageType}/>
-		<main>
-			<slot />
-		</main>
-		<Footer />
-		<script>
-			import "../scripts/navigation.js";
-			import "../scripts/fade-in.js";
-			//import "../scripts/animated-bg.js";
-		</script>
-	</body>
-</html> 
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Page-specific head content (title/meta) -->
+    <slot name="head" />
+  </head>
+
+  <body>
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

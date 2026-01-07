@@ -1,17 +1,222 @@
 ---
-import { Image } from 'astro:assets';
-
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-import Card from '../components/card.astro';
-import CardGrid from '../components/cardGrid.astro';
-import '../styles/index.scss';
-
-import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png';
-
 ---
+<BaseLayout>
+  <Fragment slot="head">
+    <title>Studio Fraktal</title>
+    <meta name="description" content="Design & development studio." />
+  </Fragment>
 
-<BaseLayout pageTitle="Home" pageType="index">
+  <section class="home-hero section section--tight">
+	<div class="hero-surface">
+	  <div class="hero-wrap">
+		<div class="hero-card">
+		  <h1 class="hero-title">
+			We shape what’s next<span class="highlight">.</span>
+		  </h1>
+  
+		  <p class="hero-lead">
+			Studio Fraktal is een digitaal design- en webcollectief. We bouwen merken,
+			websites en experiences die klaar zijn voor morgen.
+		  </p>
+  
+		  <div class="hero-actions">
+			<a class="btn btn--primary" href="/contact">Let’s talk</a>
+			<a class="btn btn--soft" href="/work">Bekijk werk</a>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+  
+  <section class="home-services section">
+	<div class="wrap">
+	  <div class="services-inner stack stack--4">
+  
+		<header class="services-head stack stack--2">
+		  <h2>Services</h2>
+		  <p class="services-lead">
+			We helpen merken en bedrijven om digitaal helder, consistent
+			en toekomstgericht te bouwen.
+		  </p>
+		</header>
+  
+		<div class="services-grid">
+		  <article class="service-card">
+			<h3>Branding & Strategie</h3>
+			<p>
+			  We leggen een sterke basis door merkidentiteit, positionering
+			  en strategie helder te definiëren — zodat alles daarna klopt.
+			</p>
+			<a href="/services/branding" class="service-link">Meer info</a>
+		  </article>
+  
+		  <article class="service-card">
+			<h3>Design & Experience</h3>
+			<p>
+			  Van interface tot interactie: we ontwerpen digitale ervaringen
+			  die intuïtief aanvoelen en visueel rust brengen.
+			</p>
+			<a href="/services/design" class="service-link">Meer info</a>
+		  </article>
+  
+		  <article class="service-card">
+			<h3>Webontwikkeling</h3>
+			<p>
+			  Moderne websites en applicaties, gebouwd met performance,
+			  toegankelijkheid en schaalbaarheid als uitgangspunt.
+			</p>
+			<a href="/services/development" class="service-link">Meer info</a>
+		  </article>
+  
+		  <article class="service-card">
+			<h3>Performance & SEO</h3>
+			<p>
+			  Snelle laadtijden, technische optimalisatie en SEO-structuur
+			  die zorgt dat je site ook effectief gevonden wordt.
+			</p>
+			<a href="/services/performance" class="service-link">Meer info</a>
+		  </article>
+		</div>
+  
+	  </div>
+	</div>
+  </section>
+
+  <section class="home-cred section section--tighter">
+	<div class="wrap">
+	  <p class="cred-line">
+		Based in Belgium <span>•</span> All custom <span>•</span>
+		Performance-first <span>•</span> SEO-ready
+	  </p>
+	</div>
+  </section>
+  
+  <section class="home-process section section--tight">
+	<div class="process-surface">
+		<div class="wrap">
+		<header class="process-head stack stack--2">
+			<p class="process-eyebrow">A clear system</p>
+			<h2>Our working process</h2>
+			<p class="process-lead">
+			Een helder proces dat creativiteit en structuur combineert — zodat je snel vooruit gaat,
+			zonder ruis.
+			</p>
+		</header>
+	
+		<ol class="process-flow">
+			<li class="process-item">
+			<div class="process-node" aria-hidden="true">
+				<span class="node-dot"></span>
+				<span class="node-icon">✦</span>
+			</div>
+	
+			<div class="process-text">
+				<h3>Discover</h3>
+				<p>Doelen, doelgroep en context scherpstellen. We bepalen wat “succes” betekent.</p>
+			</div>
+			</li>
+	
+			<li class="process-item">
+			<div class="process-node">
+				<span class="node-dot" aria-hidden="true"></span>
+				<span class="node-icon">⌁</span>
+			</div>
+	
+			<div class="process-text">
+				<h3>Define</h3>
+				<p>Structuur, content en richting. We zetten het plan om in een duidelijke aanpak.</p>
+			</div>
+			</li>
+	
+			<li class="process-item">
+			<div class="process-node">
+				<span class="node-dot" aria-hidden="true"></span>
+				<span class="node-icon">◷</span>
+			</div>
+	
+			<div class="process-text">
+				<h3>Design</h3>
+				<p>UI/UX dat rustig aanvoelt en klopt in detail — consistent en schaalbaar.</p>
+			</div>
+			</li>
+	
+			<li class="process-item">
+			<div class="process-node">
+				<span class="node-dot" aria-hidden="true"></span>
+				<span class="node-icon">↗</span>
+			</div>
+	
+			<div class="process-text">
+				<h3>Build & Launch</h3>
+				<p>Ontwikkeling, performance checks en livegang. Daarna finetunen op basis van data.</p>
+			</div>
+			</li>
+		</ol>
+		</div>
+	</div>
+  </section>
+
+  <section class="home-principles section section--tight">
+	<div class="wrap">
+	  <header class="principles-head">
+		<h2>What you can expect</h2>
+		<p>Een paar principes die in elke samenwerking terugkomen.</p>
+	  </header>
+  
+	  <ul class="principles-list">
+		<li class="principle">
+		  <span class="node-dot" aria-hidden="true"></span>
+		  <div class="p-text">
+			<h3>Clarity</h3>
+			<p>Duidelijke keuzes, geen ruis.</p>
+		  </div>
+		</li>
+  
+		<li class="principle">
+		  <span class="node-dot" aria-hidden="true"></span>
+		  <div class="p-text">
+			<h3>Quality</h3>
+			<p>Design dat klopt en code die blijft werken.</p>
+		  </div>
+		</li>
+  
+		<li class="principle">
+		  <span class="node-dot" aria-hidden="true"></span>
+		  <div class="p-text">
+			<h3>Momentum</h3>
+			<p>Snel vooruit met een helder proces.</p>
+		  </div>
+		</li>
+	  </ul>
+	</div>
+  </section>
+  
+  
+
+  <section class="home-final-cta section section--tight">
+	<div class="wrap">
+	  <div class="cta-panel">
+		<div class="cta-text stack stack--2">
+		  <h2>Ready to build something powerful?</h2>
+		  <p>
+			Vertel ons waar je naartoe wil. Wij zorgen voor een helder design,
+			sterke development en een site die klaar is voor morgen.
+		  </p>
+		</div>
+  
+		<div class="cta-actions">
+		  <a class="btn btn--primary" href="/contact">Contacteer ons</a>
+		</div>
+	  </div>
+	</div>
+  </section>
+  
+
+</BaseLayout>
+
+
+<!-- <BaseLayout pageTitle="Home" pageType="index">
 	<section class="hero fade-in fade-in-up">
 		<div class="hero-bg"></div>
 		<div class="glass-card" aria-label="Intro card">
@@ -40,13 +245,11 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 		  </header>
 	  
 		  <ul class="service-grid fade-in fade-in-right" role="list">
-			<!-- 1) Branding & Strategie -->
 			<li class="service-card glass">
 			  <span class="glass-border" aria-hidden="true"></span>
 			  <span class="glass-noise" aria-hidden="true"></span>
 	  
 			  <div class="icon" aria-hidden="true">
-				<!-- inline SVG icon -->
 				<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6">
 				  <path d="M4 7h16M4 12h10M4 17h7"/>
 				</svg>
@@ -64,7 +267,6 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 			  </a>
 			</li>
 	  
-			<!-- 2) Design & Experience -->
 			<li class="service-card glass">
 			  <span class="glass-border" aria-hidden="true"></span>
 			  <span class="glass-noise" aria-hidden="true"></span>
@@ -86,7 +288,6 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 			  <a class="text-link" href="/diensten#design">Bekijk aanpak →</a>
 			</li>
 	  
-			<!-- 3) Webontwikkeling -->
 			<li class="service-card glass popular">
 			  <span class="badge">Populair</span>
 			  <span class="glass-border" aria-hidden="true"></span>
@@ -109,7 +310,6 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 			  <a class="text-link" href="/diensten#web">Technische stack →</a>
 			</li>
 	  
-			<!-- 4) Performance & SEO -->
 			<li class="service-card glass">
 			  <span class="glass-border" aria-hidden="true"></span>
 			  <span class="glass-noise" aria-hidden="true"></span>
@@ -194,39 +394,5 @@ import ContentImage1 from '../assets/images/Mockups/FelineConsultingMockup2.png'
 		</div>
 	  </section>
 	  
-
-	<!-- <CardGrid title="Features" text="Explore the features of our product below.">
-		<Card 
-			imageSrc="https://placehold.co/200x200" 
-			altText="Feature One" 
-			title="Feature One" 
-			text="Details about feature one." 
-			ctaText="Learn More" 
-			ctaLink="/feature-one"
-		/>
-		<Card 
-			imageSrc="https://placehold.co/200x200" 
-			altText="Feature One" 
-			title="Feature One" 
-			text="Details about feature one." 
-			ctaText="Learn More" 
-			ctaLink="/feature-one"
-		/>
-		<Card 
-			imageSrc="https://placehold.co/200x200" 
-			altText="Feature One" 
-			title="Feature One" 
-			text="Details about feature one." 
-			ctaText="Learn More" 
-			ctaLink="/feature-one"
-		/>
-		<Card 
-			imageSrc="https://placehold.co/200x200" 
-			altText="Feature One" 
-			title="Feature One" 
-			text="Details about feature one." 
-			ctaText="Learn More" 
-			ctaLink="/feature-one"
-		/>
-	</CardGrid> -->
 </BaseLayout>
+ -->

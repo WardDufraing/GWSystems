@@ -1,0 +1,48 @@
+---
+import Nav from "./Nav.astro";
+import MobileMenu from "./MobileMenu.astro";
+---
+
+<header class="site-header" data-header>
+  <div class="header-inner">
+    <!-- <a href="/" class="logo">Studio Fraktal</a> -->
+    <img
+    src="/assets/logo/SF-LogoV2.png"
+    alt="Studio Fraktal logo"
+    height="32"
+    loading="eager"
+  />
+
+    <Nav />
+
+    <div class="header-cta">
+      <a class="btn btn--primary" href="/contact">Let’s talk</a>
+    </div>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      data-nav-toggle
+    >
+      <span class="nav-toggle__icon"></span>
+    </button>
+  </div>
+
+  <MobileMenu />
+</header>
+<script>
+  (() => {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      header.classList.toggle("is-scrolled", y > 10);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  })();
+</script>

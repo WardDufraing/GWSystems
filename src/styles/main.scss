@@ -1,0 +1,28 @@
+/* src/styles/main.scss */
+
+/* Core foundation */
+@use 'core/tokens';
+@use 'core/reset';
+@use 'core/base';
+@use 'core/mixins';
+
+/* Utilities (optional) */
+@use 'utilities/helpers';
+@use 'utilities/typography';
+
+/* Components */
+@use 'components/header';
+@use 'components/nav';
+@use 'components/mobile-menu';
+@use 'components/footer';
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/inputs';
+@use 'components/nodes';
+
+/* Pages */
+@use 'pages/home';
+
+/* Animations (keep at end) */
+@use 'animations/keyframes';
+@use 'animations/motion';

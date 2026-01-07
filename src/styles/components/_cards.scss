@@ -1,0 +1,8 @@
+@use '../core/mixins' as m;
+
+.card {
+  @include m.neu-raised();
+  padding: 20px;
+}
+.card--hover { @include m.neu-hover; }
+.card--inset { @include m.neu-inset(); }
