@@ -31,3 +31,4 @@ export function initReveal() {
   els.forEach((el) => io.observe(el));
   }
   
+  initReveal();
