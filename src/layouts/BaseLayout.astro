@@ -14,6 +14,11 @@ import Footer from "../components/layout/Footer.astro";
     <slot name="head" />
   </head>
 
+  <script type="module">
+    import { initReveal } from '/src/scripts/reveal.ts';
+    initReveal();
+  </script>
+
   <body>
     <Header />
 
