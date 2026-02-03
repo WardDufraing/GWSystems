@@ -1,0 +1,69 @@
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Global styles
+------------------------------ */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: map-get($colors, black);
+  color: map-get($colors, white);
+  font-family: $font-family-base;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Text selection */
+::selection {
+  background-color: map-get($colors, brand);
+  color: map-get($colors, black);
+}
+
+/* Main wrapper */
+main {
+  display: block;
+  flex: 1 0 auto;
+}
+
+/* Footer */
+.site-footer {
+  flex-shrink: 0;
+}
+
+/* Sections */
+section {
+  padding: $space-6 $container-padding;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin-inline: auto;
+}
+
+/* Section variants */
+.section--light {
+  background-color: map-get($colors, white);
+  color: map-get($colors, gray-900);
+}
+
+.section--dark {
+  background-color: map-get($colors, black);
+  color: map-get($colors, white);
+}
+
+/* Links */
+a {
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: map-get($colors, brand);
+}

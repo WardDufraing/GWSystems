@@ -1,0 +1,120 @@
+@use "../abstracts/variables" as *;
+
+.site-footer {
+  background: map-get($colors, black);
+  color: map-get($colors, white);
+  border-top: 1px solid map-get($colors, gray-700);
+
+  .footer__inner {
+    padding: $space-7 $container-padding;
+    display: grid;
+    gap: $space-6;
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+
+    img {
+      height: 44px;
+      width: auto;
+    }
+  }
+
+  .footer__tagline {
+    margin-top: $space-3;
+    max-width: 40ch;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .footer__service-area {
+    margin-top: $space-2;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+  }
+
+  .footer__title {
+    font-size: 1rem;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.2px;
+    margin-bottom: $space-3;
+  }
+
+  .footer__list {
+    display: grid;
+    gap: $space-2;
+  }
+
+  .footer__link {
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: map-get($colors, brand);
+    }
+
+    &:focus-visible {
+      outline: 2px solid map-get($colors, brand);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+  }
+
+  .footer__text {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* simple CTA link (not button styling) */
+  .footer__cta {
+    display: inline-flex;
+    margin-top: $space-4;
+    font-weight: $font-weight-semibold;
+    color: map-get($colors, brand);
+
+    &:hover {
+      color: map-get($colors, white);
+    }
+
+    &:focus-visible {
+      outline: 2px solid map-get($colors, brand);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: $space-3 0;
+  }
+
+  .footer__bottom-inner {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .footer__legal {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  .footer__dot {
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  @media (min-width: $bp-md) {
+    .footer__inner {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      align-items: start;
+      gap: $space-7;
+    }
+
+    .footer__bottom-inner {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}

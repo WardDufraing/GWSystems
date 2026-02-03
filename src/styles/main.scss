@@ -1,28 +1,19 @@
 /* src/styles/main.scss */
 
 /* Core foundation */
-@use 'core/tokens';
-@use 'core/reset';
-@use 'core/base';
-@use 'core/mixins';
+@use "base/reset";
+@use "base/globals";
+@use "base/typography";
 
-/* Utilities (optional) */
-@use 'utilities/helpers';
-@use 'utilities/typography';
+/* Abstracts */
+@use "abstracts/mixins";
+@use "abstracts/variables";
+@use "abstracts/functions";
+
+/* Layout */
+@use "layout/header";
+@use "layout/footer";
 
 /* Components */
-@use 'components/header';
-@use 'components/nav';
-@use 'components/mobile-menu';
-@use 'components/footer';
-@use 'components/buttons';
-@use 'components/cards';
-@use 'components/inputs';
-@use 'components/nodes';
-
-/* Pages */
-@use 'pages/home';
-
-/* Animations (keep at end) */
-@use 'animations/keyframes';
-@use 'animations/motion';
+@use "components/buttons";
+@use "components/cards";

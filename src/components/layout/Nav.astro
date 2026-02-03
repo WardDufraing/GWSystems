@@ -1,28 +1,39 @@
 ---
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Diensten", href: "/diensten" },
+  { label: "Over ons", href: "/over-ons" },
+  { label: "Realisaties", href: "/realisaties" },
+  { label: "Contact", href: "/contact" }
+];
+
 const pathname = Astro.url.pathname;
 
-// helper: active if exact match OR path starts with it (for nested routes)
-const isActive = (href) => {
+const isActive = (href: string) => {
   if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(href + "/");
+  return pathname.startsWith(href);
 };
-
-const links = [
-  { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
 ---
 
-<nav class="main-nav" aria-label="Main navigation">
-  {links.map((l) => (
-    <a
-      href={l.href}
-      class:list={["nav-link", isActive(l.href) && "is-active"]}
-      aria-current={isActive(l.href) ? "page" : undefined}
-    >
-      {l.label}
-    </a>
-  ))}
+<nav class="header__nav" aria-label="Hoofdnavigatie">
+  <ul class="header__nav-list">
+    {navItems.map((item) => {
+      const active = isActive(item.href);
+      return (
+        <li class="header__nav-item">
+          <a
+            class={`header__nav-link ${active ? "is-active" : ""}`}
+            href={item.href}
+            aria-current={active ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+
+  <a href="/contact" class="header__cta btn btn--brand">
+    Vraag offerte
+  </a>
 </nav>

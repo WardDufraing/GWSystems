@@ -1,48 +1,33 @@
 ---
+import { Image } from "astro:assets";
+import logo from '../../assets/images/logo.png';
+
+
 import Nav from "./Nav.astro";
-import MobileMenu from "./MobileMenu.astro";
+import MobileNav from "./MobileNav.astro";
 ---
 
-<header class="site-header" data-header>
-  <div class="header-inner">
-    <!-- <a href="/" class="logo">Studio Fraktal</a> -->
-    <img
-    src="/assets/logo/SF-LogoV2.png"
-    alt="Studio Fraktal logo"
-    height="32"
-    loading="eager"
-  />
+<header class="site-header">
+  <div class="container header__inner">
+    <a class="header__logo" href="/" aria-label="Ga naar de startpagina">
+      <Image src={logo} alt="logo" width="160" height="48" />
 
-    <Nav />
-
-    <div class="header-cta">
-      <a class="btn btn--primary" href="/contact">Let’s talk</a>
-    </div>
+    </a>
 
     <button
-      class="nav-toggle"
-      type="button"
-      aria-label="Open menu"
-      aria-expanded="false"
-      data-nav-toggle
+        class="icon-button header__toggle"
+        type="button"
+        aria-label="Menu openen"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        data-menu-open
     >
-      <span class="nav-toggle__icon"></span>
+        <span class="icon" aria-hidden="true">☰</span>
     </button>
+
+
+    <Nav />
   </div>
 
-  <MobileMenu />
+  <MobileNav />
 </header>
-<script>
-  (() => {
-    const header = document.querySelector(".site-header");
-    if (!header) return;
-
-    const onScroll = () => {
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      header.classList.toggle("is-scrolled", y > 10);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  })();
-</script>

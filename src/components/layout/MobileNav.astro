@@ -1,0 +1,108 @@
+---
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Diensten", href: "/diensten" },
+  { label: "Over ons", href: "/over-ons" },
+  { label: "Realisaties", href: "/realisaties" },
+  { label: "Contact", href: "/contact" }
+];
+
+const pathname = Astro.url.pathname;
+
+const isActive = (href) => {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+};
+---
+
+<dialog class="mobile-menu" id="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu__inner">
+    <div class="mobile-menu__top">
+      <a class="mobile-menu__logo" href="/" data-menu-close>
+        <img src="/logo.png" alt="Logo" width="160" height="48" />
+      </a>
+
+        <button
+            class="icon-button mobile-menu__close"
+            type="button"
+            aria-label="Menu sluiten"
+            data-menu-close
+        >
+            <span class="icon" aria-hidden="true">✕</span>
+        </button>
+
+    </div>
+
+    <nav class="mobile-menu__nav" aria-label="Mobiele navigatie">
+      <ul class="mobile-menu__list">
+        {navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <li class="mobile-menu__item">
+              <a
+                class={`mobile-menu__link ${active ? "is-active" : ""}`}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                data-menu-close
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <div class="mobile-menu__bottom">
+        <a href="/contact" class="mobile-menu__cta" data-menu-close>
+            Contacteer ons
+          </a>
+    </div>
+  </div>
+
+  <script>
+    // Grab the dialog itself (typed), and the open button living in the header
+    const dialog = document.getElementById("mobile-menu");
+    const openBtn = document.querySelector('[data-menu-open]');
+
+    // Type guards for TS + runtime safety
+    const isDialog = (el) => el instanceof HTMLDialogElement;
+    const isButton = (el) => el instanceof HTMLButtonElement;
+
+    if (isDialog(dialog) && isButton(openBtn)) {
+      const closeBtns = dialog.querySelectorAll("[data-menu-close]");
+
+      const setExpanded = (v) => openBtn.setAttribute("aria-expanded", String(v));
+
+      openBtn.addEventListener("click", () => {
+        if (!dialog.open) dialog.showModal();
+        setExpanded(true);
+      });
+
+      closeBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          dialog.close();
+          setExpanded(false);
+        });
+      });
+
+      // Close on backdrop click
+      dialog.addEventListener("click", (e) => {
+        const rect = dialog.getBoundingClientRect();
+        const inDialog =
+          rect.top <= e.clientY &&
+          e.clientY <= rect.bottom &&
+          rect.left <= e.clientX &&
+          e.clientX <= rect.right;
+
+        if (!inDialog) {
+          dialog.close();
+          setExpanded(false);
+        }
+      });
+
+      // Escape closes the dialog automatically; we still update aria-expanded
+      dialog.addEventListener("close", () => setExpanded(false));
+    }
+  </script>
+</dialog>

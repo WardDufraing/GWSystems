@@ -1,44 +1,93 @@
+---
+import { Image } from "astro:assets";
+import logo from '../../assets/images/logoFull.png';
+
+const year = new Date().getFullYear();
+
+const links = [
+  { label: "Home", href: "/" },
+  { label: "Diensten", href: "/diensten" },
+  { label: "Over ons", href: "/over-ons" },
+  { label: "Realisaties", href: "/realisaties" },
+  { label: "Contact", href: "/contact" }
+];
+
+// Replace these later with real data (keep placeholders for now)
+const company = {
+  name: "GW Systems",
+  tagline: "Betrouwbare elektrische werken in jouw regio.",
+  phoneDisplay: "04 12 34 56 78",
+  phoneHref: "+32412345678",
+  email: "info@bedrijfsnaam.be",
+  serviceArea: "Regio: Antwerpen & omstreken",
+  addressLine: "Straatnaam 1, 2000 Antwerpen",
+  vat: "BE0123.456.789"
+};
+---
+
 <footer class="site-footer">
-    <div class="footer-wrap">
-      <div class="footer-card">
-            <div class="footer-top">
-            <div class="footer-brand">
-                <a href="/" class="footer-logo">Studio Fraktal</a>
-                <p class="footer-tagline">
-                Design & development studio — calm, modern, and built to convert.
-                </p>
-            </div>
-    
-            <div class="footer-columns" aria-label="Footer">
-                <div class="footer-col">
-                <h4>Pages</h4>
-                <a href="/work">Work</a>
-                <a href="/services">Services</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
-                </div>
-    
-                <div class="footer-col">
-                <h4>Contact</h4>
-                <a href="mailto:hello@studiofraktal.be">hello@studiofraktal.be</a>
-                <a href="https://instagram.com/" rel="noopener">Instagram</a>
-                <a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a>
-                </div>
-    
-                <div class="footer-col">
-                <h4>Legal</h4>
-                <a href="/privacy">Privacy</a>
-                <a href="/terms">Terms</a>
-                </div>
-            </div>
-            </div>
-  
-        <div class="footer-bottom">
-          <span>© {new Date().getFullYear()} Studio Fraktal</span>
-          <span class="footer-sep" aria-hidden="true">•</span>
-          <span>Made in Belgium</span>
-        </div>
+  <div class="container footer__inner">
+    <!-- Brand -->
+    <div class="footer__brand">
+      <a class="footer__logo" href="/" aria-label="Ga naar de startpagina">
+        <Image src={logo} alt="logo"/>
+    </a>
+
+      <p class="footer__tagline">{company.tagline}</p>
+      <p class="footer__service-area">{company.serviceArea}</p>
+    </div>
+
+    <!-- Links -->
+    <nav class="footer__nav" aria-label="Footer navigatie">
+      <h2 class="footer__title">Pagina’s</h2>
+      <ul class="footer__list">
+        {links.map((l) => (
+          <li class="footer__item">
+            <a class="footer__link" href={l.href}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Contact -->
+    <div class="footer__contact">
+      <h2 class="footer__title">Contact</h2>
+
+      <ul class="footer__list">
+        <li class="footer__item">
+          <a class="footer__link" href={`tel:${company.phoneHref}`}>
+            {company.phoneDisplay}
+          </a>
+        </li>
+        <li class="footer__item">
+          <a class="footer__link" href={`mailto:${company.email}`}>
+            {company.email}
+          </a>
+        </li>
+        <li class="footer__item">
+          <span class="footer__text">{company.addressLine}</span>
+        </li>
+        <li class="footer__item">
+          <span class="footer__text">BTW: {company.vat}</span>
+        </li>
+      </ul>
+
+      <!-- Optional small CTA (not a button yet) -->
+      <a class="footer__cta" href="/contact">Vraag een offerte</a>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <p class="footer__copyright">
+        © {year} {company.name}. Alle rechten voorbehouden.
+      </p>
+
+      <div class="footer__legal">
+        <a class="footer__link" href="/privacy">Privacy</a>
+        <span class="footer__dot" aria-hidden="true">•</span>
+        <a class="footer__link" href="/voorwaarden">Voorwaarden</a>
       </div>
     </div>
-  </footer>
-  
+  </div>
+</footer>

@@ -1,0 +1,300 @@
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Header
+   ------------------------------ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: map-get($z-layers, header);
+  background: map-get($colors, black);
+  border-bottom: 1px solid map-get($colors, gray-700);
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 72px;
+    padding-block: $space-3;
+  }
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    padding-left: 10px;
+
+    img {
+      height: 40px;
+      width: auto;
+    }
+  }
+
+  .header__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-2;
+    border-radius: 10px;
+    color: map-get($colors, white);
+    line-height: 1;
+
+    &:hover {
+      color: map-get($colors, brand);
+    }
+
+    &:focus-visible {
+      outline: 2px solid map-get($colors, brand);
+      outline-offset: 3px;
+    }
+  }
+
+  /* Desktop nav hidden on mobile */
+  .header__nav {
+    display: none;
+
+    .header__nav-list {
+      display: flex;
+      align-items: center;
+      gap: $space-4;
+    }
+
+    .header__nav-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .header__nav-link {
+      display: inline-flex;
+      align-items: center;
+      padding: $space-2;
+      border-radius: 10px;
+      font-weight: $font-weight-medium;
+      color: map-get($colors, white);
+      transition: color 0.2s ease, background 0.2s ease;
+
+      &:hover {
+        color: map-get($colors, brand);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      &.is-active {
+        color: map-get($colors, brand);
+      }
+
+      &:focus-visible {
+        outline: 2px solid map-get($colors, brand);
+        outline-offset: 3px;
+      }
+    }
+
+    /* CTA is desktop-only (button styles later in button.scss) */
+    .header__cta {
+      display: none; // off by default (mobile)
+    }
+  }
+}
+
+/* ------------------------------
+   Icon buttons (hamburger / close)
+   ------------------------------ */
+
+   .icon-button {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  
+    padding: 0;
+    border-radius: 10px;
+  
+    color: map-get($colors, white);
+    line-height: 1;
+  
+    .icon {
+      display: block;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+  
+    &:hover {
+      color: map-get($colors, brand);
+    }
+  
+    &:focus-visible {
+      outline: 2px solid map-get($colors, brand);
+      outline-offset: 3px;
+    }
+  }
+  
+
+/* ------------------------------
+   Mobile fullscreen menu (dialog)
+   ------------------------------ */
+
+   .mobile-menu {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+  
+    border: 0;
+    background: map-get($colors, black);
+    color: map-get($colors, white);
+  
+    &::backdrop {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  
+    .mobile-menu__inner {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .mobile-menu__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: $space-3;
+      padding-block: $space-3;
+      min-height: 72px;
+    }
+  
+    .mobile-menu__logo {
+      display: flex;
+      align-items: center;
+  
+      img {
+        height: 40px;
+        width: auto;
+      }
+    }
+  
+    .mobile-menu__close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: $space-2;
+      border-radius: 10px;
+      color: map-get($colors, white);
+      line-height: 1;
+  
+      &:hover {
+        color: map-get($colors, brand);
+      }
+  
+      &:focus-visible {
+        outline: 2px solid map-get($colors, brand);
+        outline-offset: 3px;
+      }
+    }
+  
+    /* Center the nav list vertically */
+    .mobile-menu__nav {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+  
+    .mobile-menu__list {
+      width: 100%;
+      display: grid;
+      gap: 0; /* no "button spacing" */
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  
+    .mobile-menu__item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  
+    .mobile-menu__link {
+      display: block;
+      width: 100%;
+      padding: $space-4 $space-3;
+  
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: $font-weight-semibold;
+      letter-spacing: 0.2px;
+  
+      color: map-get($colors, white);
+      background: transparent;
+  
+      transition: color 0.2s ease, background 0.2s ease;
+  
+      &:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
+  
+      &.is-active {
+        color: map-get($colors, brand);
+      }
+  
+      &:focus-visible {
+        outline: 2px solid map-get($colors, brand);
+        outline-offset: -2px; /* keeps outline inside row */
+      }
+    }
+  
+    .mobile-menu__bottom {
+      padding: $space-4 $space-3;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      .mobile-menu__cta {
+        display: block;
+        width: 100%;
+        margin-top: $space-3;
+        padding: $space-4 $space-3;
+    
+        text-align: center;
+        font-size: 1.15rem;
+        font-weight: $font-weight-semibold;
+    
+        color: map-get($colors, brand);
+        border: 1px solid rgba(231, 184, 38, 0.35);
+        border-radius: 12px;
+    
+        &:hover {
+          background: rgba(231, 184, 38, 0.08);
+          border-color: rgba(231, 184, 38, 0.6);
+        }
+    
+        &:focus-visible {
+          outline: 2px solid map-get($colors, brand);
+          outline-offset: 3px;
+        }
+      }
+    }
+    }   
+    
+
+/* ------------------------------
+   Desktop styles
+   ------------------------------ */
+
+@media (min-width: $bp-md) {
+  .site-header {
+    .header__toggle {
+      display: none;
+    }
+
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: $space-4;
+
+      .header__cta {
+        display: inline-flex;
+      }
+    }
+  }
+
+  /* The mobile menu is not used on desktop */
+  .mobile-menu {
+    display: none;
+  }
+}
