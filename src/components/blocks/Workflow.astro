@@ -1,0 +1,40 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Contact & intake",
+    desc: "Je legt kort uit wat je nodig hebt. We stellen gerichte vragen en denken meteen mee."
+  },
+  {
+    number: "02",
+    title: "Voorstel op maat",
+    desc: "Je krijgt een duidelijke offerte en planning. Transparant, zonder verrassingen."
+  },
+  {
+    number: "03",
+    title: "Uitvoering & oplevering",
+    desc: "We werken netjes, veilig en volgens norm. Nadien lichten we alles duidelijk toe."
+  }
+];
+---
+
+<section class="workflow section section--dark section--tight sep sep--band sep--bottom">
+  <div class="container workflow__inner">
+    <header class="workflow__header">
+      <h2 class="workflow__title">Hoe we werken</h2>
+      <p class="workflow__subtitle">
+        Van eerste contact tot oplevering: duidelijke communicatie en correcte afspraken.
+      </p>
+    </header>
+
+    <div class="workflow__grid">
+      {steps.map((step) => (
+        <div class="workflow__step">
+          <span class="workflow__step-number">{step.number}</span>
+          <h3 class="workflow__step-title">{step.title}</h3>
+          <p class="workflow__step-desc">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

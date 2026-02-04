@@ -1,11 +1,6 @@
 ---
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Diensten", href: "/diensten" },
-  { label: "Over ons", href: "/over-ons" },
-  { label: "Realisaties", href: "/realisaties" },
-  { label: "Contact", href: "/contact" }
-];
+import { navigation } from "../../data/navigation";
+import { company } from "../../data/company";
 
 const pathname = Astro.url.pathname;
 
@@ -17,7 +12,7 @@ const isActive = (href: string) => {
 
 <nav class="header__nav" aria-label="Hoofdnavigatie">
   <ul class="header__nav-list">
-    {navItems.map((item) => {
+    {navigation.pages.map((item) => {
       const active = isActive(item.href);
       return (
         <li class="header__nav-item">
@@ -33,7 +28,7 @@ const isActive = (href: string) => {
     })}
   </ul>
 
-  <a href="/contact" class="header__cta btn btn--brand">
-    Vraag offerte
+  <a class="header__cta btn btn--brand" href={company.cta.primary.href}>
+    {company.cta.primary.label}
   </a>
 </nav>

@@ -1,0 +1,114 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+.workflow {
+  position: relative;
+
+  .workflow__inner {
+    position: relative; /* above band */
+    display: grid;
+    gap: $space-6;
+  }
+
+  .workflow__header {
+    display: grid;
+    gap: $space-2;
+    max-width: 70ch;
+  }
+
+  .workflow__title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+    color: map.get($colors, white);
+  }
+
+  .workflow__subtitle {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  /* Timeline-ish layout on mobile */
+  .workflow__grid {
+    display: grid;
+    gap: $space-5;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  /* vertical line */
+  .workflow__grid::before {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 0.35rem;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .workflow__step {
+    position: relative;
+    padding-left: 2.25rem;
+  }
+
+  /* numbered dot */
+  .workflow__step-number {
+    position: absolute;
+    left: -0.1rem;
+    top: 0.1rem;
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: $font-weight-bold;
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+
+    color: map.get($colors, black);
+    background: map.get($colors, brand);
+    box-shadow: 0 0 0 6px rgba(231, 184, 38, 0.10);
+  }
+
+  .workflow__step-title {
+    font-size: 1.12rem;
+    font-weight: $font-weight-semibold;
+    color: map.get($colors, white);
+    margin-bottom: $space-1;
+  }
+
+  .workflow__step-desc {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 60ch;
+  }
+
+  @media (min-width: $bp-md) {
+    /* Less “timeline”, more structured columns */
+    .workflow__grid {
+      padding-left: 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $space-6;
+    }
+
+    .workflow__grid::before {
+      display: none;
+    }
+
+    .workflow__step {
+      padding-left: 0;
+      padding-top: 2.5rem;
+    }
+
+    .workflow__step-number {
+      left: 0;
+      top: 0;
+    }
+
+    .workflow__title {
+      font-size: 2.1rem;
+    }
+  }
+}

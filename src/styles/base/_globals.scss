@@ -10,36 +10,46 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.9; // overall intensity control
 
+  /* Desktop / default */
   background:
-    /* Glow 1 - brand top-left */
     radial-gradient(
-      600px 600px at -10% -10%,
+      600px 600px at 0% 0%,
       rgba(231, 184, 38, 0.22),
       transparent 60%
     ),
-
-    /* Glow 2 - soft gray bottom-right */
     radial-gradient(
-      650px 650px at 110% 110%,
+      650px 650px at 100% 100%,
       rgba(255, 255, 255, 0.16),
       transparent 60%
     ),
-
-    /* Glow 3 - subtle mid-right brand */
     radial-gradient(
       520px 520px at 90% 25%,
       rgba(231, 184, 38, 0.12),
       transparent 62%
     ),
-
-    /* Glow 4 - subtle mid-left gray */
     radial-gradient(
       520px 520px at 15% 70%,
       rgba(255, 255, 255, 0.10),
       transparent 62%
     );
+}
+
+@media (max-width: $bp-md) {
+  .site-bg {
+    background:
+      /* Keep only 2 softer glows on mobile */
+      radial-gradient(
+        420px 420px at 0% 0%,
+        rgba(231, 184, 38, 0.14),
+        transparent 62%
+      ),
+      radial-gradient(
+        460px 460px at 90% 90%,
+        rgba(255, 255, 255, 0.10),
+        transparent 64%
+      );
+  }
 }
 
 html, body {
@@ -77,6 +87,14 @@ main {
 
 /* Sections */
 section {
+  padding: $space-7 $container-padding;
+}
+
+.section--tight{
+  padding: $space-5 $container-padding;
+}
+
+.section--tighter {
   padding: $space-4 $container-padding;
 }
 
@@ -85,12 +103,6 @@ section {
   width: 100%;
   max-width: $container-max-width;
   margin-inline: auto;
-}
-
-/* Section variants */
-.section--light {
-  background-color: map.get($colors, white);
-  color: map.get($colors, gray-900);
 }
 
 .section--dark {

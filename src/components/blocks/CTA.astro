@@ -1,0 +1,25 @@
+---
+import { company } from "../../data/company";
+---
+
+<section class="cta-strip section section--dark sep sep--bottom">
+  <div class="container cta-strip__inner">
+    <div class="cta-strip__card">
+      <div class="cta-strip__content">
+        <h2 class="cta-strip__title">
+          {company.cta.strip.title}
+        </h2>
+        <p class="cta-strip__subtitle">{company.cta.strip.subtitle}</p>
+      </div>
+
+      <div class="cta-strip__actions">
+        <a class="btn btn--brand btn--lg" href={company.cta.primary.href}>
+          {company.cta.primary.label}
+        </a>
+        <a class="btn btn--outline btn--lg" href={company.cta.secondary.href}>
+          {company.cta.secondary.label}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

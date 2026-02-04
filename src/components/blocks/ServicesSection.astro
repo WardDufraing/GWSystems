@@ -1,0 +1,40 @@
+---
+import { company } from "../../data/company";
+---
+
+<section class="services section section--dark">
+  <div class="container services__inner">
+    <!-- Header -->
+    <header class="services__header">
+      <h2 class="services__title">Wat we doen</h2>
+      <p class="services__subtitle">
+        Van klassieke elektriciteitswerken tot slimme energie-oplossingen.
+        We denken mee, werken proper en communiceren duidelijk.
+      </p>
+    </header>
+
+    <!-- Grid -->
+    <div class="services__grid">
+      {company.services.map((service) => (
+        <a
+          class="services__card"
+          href={`/diensten#${service.id}`}
+        >
+          <h3 class="services__card-title">{service.label}</h3>
+          <p class="services__card-desc">{service.shortDesc}</p>
+          <span class="services__card-link">Meer info →</span>
+        </a>
+      ))}
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="services__footer">
+      <p class="services__note">
+        Niet zeker wat je nodig hebt? Leg het kort uit — we helpen je kiezen.
+      </p>
+      <a class="btn btn--brand" href={company.cta.primary.href}>
+        {company.cta.primary.label}
+      </a>
+    </div>
+  </div>
+</section>

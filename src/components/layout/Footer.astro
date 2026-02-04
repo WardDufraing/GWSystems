@@ -2,27 +2,10 @@
 import { Image } from "astro:assets";
 import logo from '../../assets/images/logoFull.png';
 
+import { company } from "../../data/company";
+import { navigation } from "../../data/navigation";
+
 const year = new Date().getFullYear();
-
-const links = [
-  { label: "Home", href: "/" },
-  { label: "Diensten", href: "/diensten" },
-  { label: "Over ons", href: "/over-ons" },
-  { label: "Realisaties", href: "/realisaties" },
-  { label: "Contact", href: "/contact" }
-];
-
-// Replace these later with real data (keep placeholders for now)
-const company = {
-  name: "GW Systems",
-  tagline: "Betrouwbare elektrische werken in jouw regio.",
-  phoneDisplay: "04 12 34 56 78",
-  phoneHref: "+32412345678",
-  email: "info@bedrijfsnaam.be",
-  serviceArea: "Regio: Antwerpen & omstreken",
-  addressLine: "Straatnaam 1, 2000 Antwerpen",
-  vat: "BE0123.456.789"
-};
 ---
 
 <footer class="site-footer">
@@ -41,7 +24,7 @@ const company = {
     <nav class="footer__nav" aria-label="Footer navigatie">
       <h2 class="footer__title">Pagina’s</h2>
       <ul class="footer__list">
-        {links.map((l) => (
+        {navigation.pages.map((l) => (
           <li class="footer__item">
             <a class="footer__link" href={l.href}>{l.label}</a>
           </li>
@@ -55,25 +38,26 @@ const company = {
 
       <ul class="footer__list">
         <li class="footer__item">
-          <a class="footer__link" href={`tel:${company.phoneHref}`}>
-            {company.phoneDisplay}
+          <a class="footer__link" href={`tel:${company.contact.phoneHref}`}>
+            {company.contact.phoneDisplay}
           </a>
         </li>
         <li class="footer__item">
-          <a class="footer__link" href={`mailto:${company.email}`}>
-            {company.email}
+          <a class="footer__link" href={`mailto:${company.contact.email}`}>
+            {company.contact.email}
           </a>
         </li>
         <li class="footer__item">
-          <span class="footer__text">{company.addressLine}</span>
+          <span class="footer__text">{company.address.street}, {company.address.zip} {company.address.city}</span>
         </li>
         <li class="footer__item">
           <span class="footer__text">BTW: {company.vat}</span>
         </li>
       </ul>
 
-      <!-- Optional small CTA (not a button yet) -->
-      <a class="footer__cta" href="/contact">Vraag een offerte</a>
+      <a class="footer__cta" href={company.cta.primary.href}>
+        {company.cta.primary.label}
+      </a>
     </div>
   </div>
 
@@ -83,10 +67,13 @@ const company = {
         © {year} {company.name}. Alle rechten voorbehouden.
       </p>
 
-      <div class="footer__legal">
-        <a class="footer__link" href="/privacy">Privacy</a>
-        <span class="footer__dot" aria-hidden="true">•</span>
-        <a class="footer__link" href="/voorwaarden">Voorwaarden</a>
+      <div class="footer__legal" aria-label="Juridisch">
+        {navigation.footer.map((item, i) => (
+          <>
+            <a class="footer__link" href={item.href}>{item.label}</a>
+            {i < navigation.footer.length - 1 && <span class="footer__dot" aria-hidden="true">•</span>}
+          </>
+        ))}
       </div>
     </div>
   </div>

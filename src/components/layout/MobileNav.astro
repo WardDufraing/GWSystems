@@ -2,13 +2,7 @@
 import { Image } from "astro:assets";
 import logo from '../../assets/images/logo.png';
 
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Diensten", href: "/diensten" },
-  { label: "Over ons", href: "/over-ons" },
-  { label: "Realisaties", href: "/realisaties" },
-  { label: "Contact", href: "/contact" }
-];
+import { navigation } from "../../data/navigation";
 
 const pathname = Astro.url.pathname;
 
@@ -38,7 +32,7 @@ const isActive = (href) => {
 
     <nav class="mobile-menu__nav" aria-label="Mobiele navigatie">
       <ul class="mobile-menu__list">
-        {navItems.map((item) => {
+        {navigation.pages.map((item) => {
           const active = isActive(item.href);
           return (
             <li class="mobile-menu__item">

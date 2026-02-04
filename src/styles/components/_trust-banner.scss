@@ -7,18 +7,12 @@
    ------------------------------ */
 
 .trust-banner {
-  background: map.get($colors, black);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-
-  .trust-banner__inner {
-    padding-block: $space-4;
-  }
-
   .trust-banner__list {
     display: grid;
     gap: $space-3;
     justify-items: space-evenly;
     text-align: center;
+    place-items: center;
   }
 
   .trust-banner__item {

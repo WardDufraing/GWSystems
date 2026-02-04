@@ -1,0 +1,65 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Section separators (global)
+   ------------------------------ */
+
+.sep {
+  position: relative;
+}
+
+/* Shared gradient definition */
+@mixin sep-gradient {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.14),
+    rgba(231, 184, 38, 0.65),
+    rgba(255, 255, 255, 0.14),
+    transparent
+  );
+}
+
+/* Top separator */
+.sep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+
+  height: 1px;
+
+  pointer-events: none;
+  @include sep-gradient;
+}
+
+/* Bottom separator */
+.sep--bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+
+  height: 1px;
+
+  pointer-events: none;
+  @include sep-gradient;
+}
+
+/* Optional subtle dark band */
+.sep--band {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Ensure content is above band */
+.sep--band > * {
+  position: relative;
+  z-index: 1;
+}

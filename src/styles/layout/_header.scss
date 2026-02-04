@@ -10,8 +10,9 @@
   position: sticky;
   top: 0;
   z-index: map.get($z-layers, header);
-  background: map.get($colors, black);
   border-bottom: 1px solid map.get($colors, gray-700);
+  background: map.get($colors, light-black);
+
 
   .header__inner {
     display: flex;

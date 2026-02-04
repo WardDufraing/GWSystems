@@ -4,6 +4,7 @@
 @use "base/reset";
 @use "base/globals";
 @use "base/typography";
+@use "base/separators";
 
 /* Abstracts */
 @use "abstracts/mixins";
@@ -17,5 +18,11 @@
 /* Components */
 @use "components/buttons";
 @use "components/cards";
+
+
+/* Blocks */
 @use "components/hero";
 @use "components/trust-banner";
+@use "components/services";
+@use "components/workflow";
+@use "components/cta";
