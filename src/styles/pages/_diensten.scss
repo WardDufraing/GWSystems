@@ -1,0 +1,260 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Diensten hero (intro)
+   ------------------------------ */
+
+.diensten-hero {
+  .diensten-hero__inner {
+    display: grid;
+    gap: $space-5;
+  }
+
+  .diensten-hero__title {
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: $font-weight-bold;
+    color: map.get($colors, white);
+  }
+
+  .diensten-hero__subtitle {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+    max-width: 75ch;
+  }
+
+  .diensten-hero__actions {
+    display: grid;
+    gap: $space-3;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .diensten-hero__jump-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+  }
+
+  .diensten-hero__jump-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-2 $space-3;
+    border-radius: 999px;
+
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    transition: background 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background: rgba(231, 184, 38, 0.08);
+      border-color: rgba(231, 184, 38, 0.35);
+    }
+
+    &:focus-visible {
+      outline: 2px solid map.get($colors, brand);
+      outline-offset: 3px;
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    .diensten-hero__title {
+      font-size: 3rem;
+    }
+
+    .diensten-hero__actions {
+      display: flex;
+      gap: $space-3;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}
+
+/* ------------------------------
+   Diensten list
+   ------------------------------ */
+
+.diensten {
+  .diensten__inner {
+    display: grid;
+    gap: $space-6;
+  }
+
+  .dienst {
+    padding-block: $space-6;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    scroll-margin-top: 110px;
+
+    &:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  /* Text + image layout */
+  .dienst__grid {
+    display: grid;
+    gap: $space-5;
+  }
+
+  .dienst__header {
+    display: grid;
+    gap: $space-2;
+    margin-bottom: $space-4;
+    max-width: 85ch;
+  }
+
+  .dienst__title {
+    font-size: 1.7rem;
+    font-weight: $font-weight-bold;
+    color: map.get($colors, white);
+  }
+
+  .dienst__desc {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+  }
+
+  /* Bigger explanation text */
+  .dienst__intro {
+    display: grid;
+    gap: $space-3;
+    max-width: 85ch;
+    margin-bottom: $space-4;
+  }
+
+  .dienst__p {
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.75;
+  }
+
+  .dienst__bullets {
+    display: grid;
+    gap: $space-2;
+    padding-left: 1.1rem;
+    margin-bottom: $space-5;
+    max-width: 85ch;
+  }
+
+  .dienst__bullet {
+    color: rgba(255, 255, 255, 0.75);
+
+    &::marker {
+      color: map.get($colors, brand);
+    }
+  }
+
+  /* Service image */
+  .dienst__media {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .dienst__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* FAQ - full width feel, less padding */
+  .dienst__faq {
+    margin-top: $space-5;
+    margin-bottom: $space-5;
+  }
+
+  .dienst__faq-title {
+    font-size: 1.1rem;
+    font-weight: $font-weight-semibold;
+    color: map.get($colors, white);
+    margin-bottom: $space-3;
+  }
+
+  .dienst__faq-list {
+    display: grid;
+    gap: $space-2;
+  }
+
+  .faq-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .faq-item__summary {
+    cursor: pointer;
+    padding: $space-3 $space-4;
+
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: $font-weight-semibold;
+
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    position: relative;
+
+    &::after {
+      content: "+";
+      position: absolute;
+      right: $space-4;
+      top: 50%;
+      transform: translateY(-50%);
+      color: map.get($colors, brand);
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .faq-item[open] .faq-item__summary::after {
+    content: "–";
+  }
+
+  .faq-item__body {
+    padding: 0 $space-4 $space-4 $space-4;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.75;
+    max-width: 85ch;
+  }
+
+  .dienst__actions {
+    display: grid;
+    gap: $space-3;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    .dienst__grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: start;
+    }
+
+    .dienst__title {
+      font-size: 1.95rem;
+    }
+
+    .dienst__actions {
+      display: flex;
+      gap: $space-3;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}

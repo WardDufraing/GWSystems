@@ -1,9 +1,126 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { company } from '../data/company';
+
+import imgElektriciteit from "../assets/images/services/elektriciteit.png";
+import imgDomotica from "../assets/images/services/domotica.png";
+import imgLaadpalen from "../assets/images/services/laadpalen.png";
+import imgThuisbatterijen from "../assets/images/services/thuisbatterijen.png";
+
+const serviceImages = {
+  elektriciteit: imgElektriciteit,
+  domotica: imgDomotica,
+  laadpalen: imgLaadpalen,
+  thuisbatterijen: imgThuisbatterijen,
+} as const;
 ---
 <BaseLayout>
   <Fragment slot="head">
-    <title>Services | Studio Fraktal</title>
-    <meta name="description" content="Design & development studio." />
+    <title>Diensten | GW Systems</title>
+    <meta
+      name="description"
+      content="Een overzicht van alle diensten die GW Systems aanbiedt: elektriciteit, domotica, laadpalen en thuisbatterijen."
+    />
   </Fragment>
+
+  <!-- Page intro -->
+  <section class="diensten-hero section section--dark">
+    <div class="container diensten-hero__inner">
+      <h1 class="diensten-hero__title">Diensten</h1>
+
+      <p class="diensten-hero__subtitle">
+        {company.services.map((s) => s.label).join(" • ")} — vakkundig geplaatst, netjes afgewerkt en
+        transparant geprijsd.
+      </p>
+
+      <div class="diensten-hero__actions">
+        <a class="btn btn--brand" href={company.cta.primary.href}>
+          {company.cta.primary.label}
+        </a>
+        <a class="btn btn--outline" href={company.cta.secondary.href}>
+          {company.cta.secondary.label}
+        </a>
+      </div>
+
+      <!-- Jump links -->
+      <nav class="diensten-hero__jump" aria-label="Ga naar dienst">
+        <ul class="diensten-hero__jump-list">
+          {company.services.map((s) => (
+            <li class="diensten-hero__jump-item">
+              <a class="diensten-hero__jump-link" href={`#${s.id}`}>{s.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="diensten section section--dark sep sep--top sep--bottom">
+    <div class="container diensten__inner">
+      {company.services.map((s) => (
+        <article class="dienst" id={s.id}>
+          <div class="dienst__grid">
+            <div class="dienst__content">
+              <header class="dienst__header">
+                <h2 class="dienst__title">{s.label}</h2>
+                <p class="dienst__desc">{s.shortDesc}</p>
+              </header>
+
+              <div class="dienst__intro">
+                {s.intro?.map((p) => <p class="dienst__p">{p}</p>)}
+              </div>
+
+              {s.bullets?.length && (
+                <ul class="dienst__bullets">
+                  {s.bullets.map((b) => <li class="dienst__bullet">{b}</li>)}
+                </ul>
+              )}
+            </div>
+
+            <div class="dienst__media">
+              <Image
+                class="dienst__image"
+                src={serviceImages[s.imageKey]}
+                alt={s.imageAlt}
+                loading="lazy"
+                width={900}
+                height={700}
+              />
+            </div>
+          </div>
+
+          {/* FAQ */}
+          {s.faq?.length && (
+            <section class="dienst__faq" aria-label={`FAQ ${s.label}`}>
+              <h3 class="dienst__faq-title">Veel gevraagd</h3>
+
+              <div class="dienst__faq-list">
+                {s.faq.map((item) => (
+                  <details class="faq-item">
+                    <summary class="faq-item__summary">{item.q}</summary>
+                    <div class="faq-item__body">
+                      <p>{item.a}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <div class="dienst__actions">
+            <a class="btn btn--brand" href={company.cta.primary.href}>
+              {company.cta.primary.label}
+            </a>
+            <a class="btn btn--outline" href={company.cta.secondary.href}>
+              {company.cta.secondary.label}
+            </a>
+          </div>
+        </article>
+
+      ))}
+    </div>
+  </section>
+  
 </BaseLayout>
