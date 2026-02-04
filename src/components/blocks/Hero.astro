@@ -1,4 +1,33 @@
 ---
+const services = ["Elektriciteit", "Domotica", "Laadpalen", "Thuisbatterijen"];
 
+const phoneDisplay = "04 12 34 56 78";
+const phoneHref = "+32412345678";
+const serviceArea = "Regio Antwerpen & omstreken";
 ---
 
+<section class="hero section--dark">
+  <div class="container hero__inner">
+    <div class="hero__card">
+      <p class="hero__eyebrow">{serviceArea}</p>
+
+      <h1 class="hero__title">
+        Betrouwbare elektricien voor
+        <span class="hero__highlight"> slimme & duurzame </span>
+        installaties
+      </h1>
+
+      <p class="hero__subtitle">
+        {services.join(" • ")} — vakkundig geplaatst, netjes afgewerkt en
+        transparant geprijsd.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--brand btn--lg" href="/contact">Vraag offerte</a>
+        <a class="btn btn--outline btn--lg" href={`tel:${phoneHref}`}>
+          Bel {phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

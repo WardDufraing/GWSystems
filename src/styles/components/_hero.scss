@@ -1,0 +1,101 @@
+@use "sass:map";
+
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Hero
+   ------------------------------ */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    padding-block: $space-7;
+  }
+
+  .hero__card {
+    position: relative;
+    padding: $space-6;
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(231, 184, 38, 0.25);
+    }
+  }
+
+  .hero__eyebrow {
+    font-size: 0.95rem;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .hero__title {
+    margin-top: $space-3;
+    font-size: 2.05rem;
+    line-height: 1.15;
+    font-weight: $font-weight-bold;
+    max-width: 22ch;
+  }
+
+  .hero__highlight {
+    color: map.get($colors, brand);
+  }
+
+  .hero__subtitle {
+    margin-top: $space-3;
+    max-width: 60ch;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .hero__actions {
+    margin-top: $space-5;
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    .hero__card {
+      padding: $space-7;
+    }
+
+    .hero__title {
+      font-size: 2.8rem;
+    }
+
+    .hero__actions {
+      flex-direction: row;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+
+  @media (min-width: $bp-lg) {
+    .hero__title {
+      font-size: 3.1rem;
+    }
+  }
+}

@@ -1,9 +1,10 @@
+@use "sass:map";
+
 @use "../abstracts/variables" as *;
 
 .site-footer {
-  background: map-get($colors, black);
-  color: map-get($colors, white);
-  border-top: 1px solid map-get($colors, gray-700);
+  color: map.get($colors, white);
+  border-top: 1px solid map.get($colors, gray-700);
 
   .footer__inner {
     padding: $space-7 $container-padding;
@@ -50,11 +51,11 @@
     transition: color 0.2s ease;
 
     &:hover {
-      color: map-get($colors, brand);
+      color: map.get($colors, brand);
     }
 
     &:focus-visible {
-      outline: 2px solid map-get($colors, brand);
+      outline: 2px solid map.get($colors, brand);
       outline-offset: 3px;
       border-radius: 8px;
     }
@@ -69,14 +70,14 @@
     display: inline-flex;
     margin-top: $space-4;
     font-weight: $font-weight-semibold;
-    color: map-get($colors, brand);
+    color: map.get($colors, brand);
 
     &:hover {
-      color: map-get($colors, white);
+      color: map.get($colors, white);
     }
 
     &:focus-visible {
-      outline: 2px solid map-get($colors, brand);
+      outline: 2px solid map.get($colors, brand);
       outline-offset: 3px;
       border-radius: 8px;
     }

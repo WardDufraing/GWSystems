@@ -1,27 +1,67 @@
+@use "sass:map";
+
 @use "../abstracts/variables" as *;
 
 /* ------------------------------
    Global styles
 ------------------------------ */
+.site-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9; // overall intensity control
+
+  background:
+    /* Glow 1 - brand top-left */
+    radial-gradient(
+      600px 600px at -10% -10%,
+      rgba(231, 184, 38, 0.22),
+      transparent 60%
+    ),
+
+    /* Glow 2 - soft gray bottom-right */
+    radial-gradient(
+      650px 650px at 110% 110%,
+      rgba(255, 255, 255, 0.16),
+      transparent 60%
+    ),
+
+    /* Glow 3 - subtle mid-right brand */
+    radial-gradient(
+      520px 520px at 90% 25%,
+      rgba(231, 184, 38, 0.12),
+      transparent 62%
+    ),
+
+    /* Glow 4 - subtle mid-left gray */
+    radial-gradient(
+      520px 520px at 15% 70%,
+      rgba(255, 255, 255, 0.10),
+      transparent 62%
+    );
+}
 
 html, body {
   height: 100%;
 }
 
 body {
-  background-color: map-get($colors, black);
-  color: map-get($colors, white);
+  background-color: map.get($colors, black);
+  color: map.get($colors, white);
   font-family: $font-family-base;
 
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  position: relative;
 }
 
 /* Text selection */
 ::selection {
-  background-color: map-get($colors, brand);
-  color: map-get($colors, black);
+  background-color: map.get($colors, brand);
+  color: map.get($colors, black);
 }
 
 /* Main wrapper */
@@ -37,7 +77,7 @@ main {
 
 /* Sections */
 section {
-  padding: $space-6 $container-padding;
+  padding: $space-4 $container-padding;
 }
 
 /* Container */
@@ -49,13 +89,12 @@ section {
 
 /* Section variants */
 .section--light {
-  background-color: map-get($colors, white);
-  color: map-get($colors, gray-900);
+  background-color: map.get($colors, white);
+  color: map.get($colors, gray-900);
 }
 
 .section--dark {
-  background-color: map-get($colors, black);
-  color: map-get($colors, white);
+  color: map.get($colors, white);
 }
 
 /* Links */
@@ -65,5 +104,5 @@ a {
 }
 
 a:hover {
-  color: map-get($colors, brand);
+  color: map.get($colors, brand);
 }

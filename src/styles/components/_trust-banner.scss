@@ -1,0 +1,53 @@
+@use "sass:map";
+
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Trust banner
+   ------------------------------ */
+
+.trust-banner {
+  background: map.get($colors, black);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  .trust-banner__inner {
+    padding-block: $space-4;
+  }
+
+  .trust-banner__list {
+    display: grid;
+    gap: $space-3;
+    justify-items: space-evenly;
+    text-align: center;
+  }
+
+  .trust-banner__item {
+    position: relative;
+    padding-left: 1.25rem;
+
+    font-weight: $font-weight-medium;
+    font-size: 0.98rem;
+    color: rgba(255, 255, 255, 0.85);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: map.get($colors, brand);
+      box-shadow: 0 0 0 4px rgba(231, 184, 38, 0.12);
+      transform: translateY(-50%);
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    .trust-banner__list {
+      grid-template-columns: repeat(3, auto);
+      justify-content: center;
+      gap: $space-6;
+    }
+  }
+}

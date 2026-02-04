@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @use "../abstracts/variables" as *;
 
 /* ------------------------------
@@ -29,7 +31,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid map-get($colors, brand);
+    outline: 2px solid map.get($colors, brand);
     outline-offset: 3px;
   }
 
@@ -43,35 +45,35 @@
 
 /* Brand button (yellow) */
 .btn--brand {
-  background: map-get($colors, brand);
-  color: map-get($colors, black);
+  background: map.get($colors, brand);
+  color: map.get($colors, black);
 
   &:hover {
-    background: map-get($colors, white);
-    color: map-get($colors, black);
+    background: map.get($colors, white);
+    color: map.get($colors, black);
   }
 }
 
 /* Outline button (useful for secondary actions) */
 .btn--outline {
   background: transparent;
-  color: map-get($colors, white);
+  color: map.get($colors, white);
   border-color: rgba(255, 255, 255, 0.25);
 
   &:hover {
     border-color: rgba(231, 184, 38, 0.6);
-    color: map-get($colors, brand);
+    color: map.get($colors, brand);
     background: rgba(231, 184, 38, 0.08);
   }
 }
 
 /* Dark button (for light sections) */
 .btn--dark {
-  background: map-get($colors, gray-900);
-  color: map-get($colors, white);
+  background: map.get($colors, gray-900);
+  color: map.get($colors, white);
 
   &:hover {
-    background: map-get($colors, black);
+    background: map.get($colors, black);
   }
 }
 
