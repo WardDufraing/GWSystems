@@ -170,6 +170,7 @@
     .mobile-menu__logo {
       display: flex;
       align-items: center;
+      padding-left: 10px;
   
       img {
         height: 40px;
@@ -200,7 +201,7 @@
     .mobile-menu__nav {
       flex: 1;
       display: flex;
-      align-items: center;
+      align-items: start;
     }
   
     .mobile-menu__list {
@@ -242,36 +243,7 @@
         outline-offset: -2px; /* keeps outline inside row */
       }
     }
-  
-    .mobile-menu__bottom {
-      padding: $space-4 $space-3;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      .mobile-menu__cta {
-        display: block;
-        width: 100%;
-        margin-top: $space-3;
-        padding: $space-4 $space-3;
-    
-        text-align: center;
-        font-size: 1.15rem;
-        font-weight: $font-weight-semibold;
-    
-        color: map.get($colors, brand);
-        border: 1px solid rgba(231, 184, 38, 0.35);
-        border-radius: 12px;
-    
-        &:hover {
-          background: rgba(231, 184, 38, 0.08);
-          border-color: rgba(231, 184, 38, 0.6);
-        }
-    
-        &:focus-visible {
-          outline: 2px solid map.get($colors, brand);
-          outline-offset: 3px;
-        }
-      }
-    }
-    }   
+  }   
     
 
 /* ------------------------------

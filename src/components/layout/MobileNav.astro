@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import logo from '../../assets/images/logo.png';
+
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Diensten", href: "/diensten" },
@@ -19,7 +22,7 @@ const isActive = (href) => {
   <div class="mobile-menu__inner">
     <div class="mobile-menu__top">
       <a class="mobile-menu__logo" href="/" data-menu-close>
-        <img src="/logo.png" alt="Logo" width="160" height="48" />
+        <Image src={logo} alt="logo" width="160" height="48" />
       </a>
 
         <button
@@ -52,12 +55,6 @@ const isActive = (href) => {
         })}
       </ul>
     </nav>
-
-    <div class="mobile-menu__bottom">
-        <a href="/contact" class="mobile-menu__cta" data-menu-close>
-            Contacteer ons
-          </a>
-    </div>
   </div>
 
   <script>
