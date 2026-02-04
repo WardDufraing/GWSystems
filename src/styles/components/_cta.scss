@@ -3,44 +3,16 @@
 
 .cta-strip {
   position: relative;
-
-  /* Make it feel less “same block” */
   padding-block: calc(#{$space-7} + #{$space-3});
-
-  /* Section-local glow so it pops vs other blocks */
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-    border-radius: 999px;
-    filter: blur(60px);
-    opacity: 0.22;
-  }
-
-  &::before {
-    width: 520px;
-    height: 520px;
-    left: -180px;
-    top: 10%;
-    background: rgba(231, 184, 38, 0.35);
-  }
-
-  &::after {
-    width: 520px;
-    height: 520px;
-    right: -220px;
-    bottom: 0%;
-    background: rgba(255, 255, 255, 0.16);
-  }
 
   .cta-strip__inner {
     position: relative;
     z-index: 1;
   }
 
-  /* The “moment” */
   .cta-strip__card {
+    position: relative;
+    overflow: hidden; /* IMPORTANT: constrains the glows */
     border-radius: 26px;
     padding: $space-6;
 
@@ -48,38 +20,42 @@
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
 
-    /* brand rim + subtle top sheen */
-    position: relative;
-    overflow: hidden;
+    /* brand rim */
+    box-shadow:
+      0 30px 90px rgba(0, 0, 0, 0.35),
+      inset 0 0 0 1px rgba(231, 184, 38, 0.22);
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: inherit;
-      box-shadow: inset 0 0 0 1px rgba(231, 184, 38, 0.22);
-    }
-
+    /* Card-local glow blobs */
+    &::before,
     &::after {
       content: "";
       position: absolute;
-      left: -20%;
-      top: -60%;
-      width: 140%;
-      height: 140%;
       pointer-events: none;
-      background: radial-gradient(
-        closest-side,
-        rgba(231, 184, 38, 0.14),
-        transparent 65%
-      );
-      transform: rotate(-10deg);
-      opacity: 0.7;
+      border-radius: 999px;
+      filter: blur(55px);
+      opacity: 0.22;
+    }
+
+    &::before {
+      width: 250px;
+      height: 250px;
+      left: -5%;
+      top: -10%;
+      background: rgba(231, 184, 38, 0.45);
+    }
+
+    &::after {
+      width: 420px;
+      height: 420px;
+      right: -240px;
+      bottom: -220px;
+      background: rgba(255, 255, 255, 0.18);
     }
   }
 
   .cta-strip__content {
+    position: relative;
+    z-index: 1;
     display: grid;
     gap: $space-2;
     max-width: 75ch;
@@ -99,6 +75,8 @@
   }
 
   .cta-strip__actions {
+    position: relative;
+    z-index: 1;
     margin-top: $space-5;
     display: grid;
     gap: $space-3;
@@ -117,6 +95,27 @@
       grid-template-columns: 1.2fr 0.8fr;
       align-items: center;
       gap: $space-6;
+
+      /* slightly larger glows on desktop */
+      &::before,
+      &::after {
+        filter: blur(60px);
+        opacity: 0.22;
+      }
+
+      &::before {
+        width: 500px;
+        height: 500px;
+        left: 10%;
+        top: -100%;
+      }
+
+      &::after {
+        width: 520px;
+        height: 520px;
+        right: -300px;
+        bottom: -280px;
+      }
     }
 
     .cta-strip__title {
