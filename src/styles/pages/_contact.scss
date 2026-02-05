@@ -1,0 +1,162 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Hero
+------------------------------ */
+
+.contact-hero {
+  .contact-hero__inner {
+    max-width: 80ch;
+    display: grid;
+    gap: $space-3;
+  }
+
+  .contact-hero__title {
+    font-size: 2.2rem;
+    font-weight: $font-weight-bold;
+    color: map.get($colors, white);
+  }
+
+  .contact-hero__subtitle {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+  }
+
+  @media (min-width: $bp-md) {
+    .contact-hero__title {
+      font-size: 3rem;
+    }
+  }
+}
+
+/* ------------------------------
+   Contact
+------------------------------ */
+
+.contact {
+  .contact__grid {
+    display: grid;
+    gap: $space-6;
+  }
+
+  .contact__heading {
+    font-size: 1.25rem;
+    font-weight: $font-weight-semibold;
+    color: map.get($colors, white);
+    margin-bottom: $space-3;
+  }
+
+  /* Info block */
+  .contact__info {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    padding: $space-5;
+  }
+
+  .contact__list {
+    display: grid;
+    gap: $space-3;
+    margin-bottom: $space-5;
+
+    li {
+      display: grid;
+      gap: $space-1;
+
+      span {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      a,
+      p {
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: rgba(231, 184, 38, 0.6);
+          text-underline-offset: 4px;
+        }
+      }
+    }
+  }
+
+  .contact__cta {
+    display: grid;
+    gap: $space-3;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  /* Form */
+  .contact__form {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    padding: $space-5;
+  }
+
+  .form-row {
+    display: grid;
+    gap: $space-2;
+    margin-bottom: $space-4;
+
+    label {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: $space-3;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.92);
+
+      &:focus {
+        outline: none;
+        border-color: rgba(231, 184, 38, 0.55);
+        box-shadow: 0 0 0 4px rgba(231, 184, 38, 0.14);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+  }
+
+  .form-note {
+    margin-top: $space-3;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+  }
+
+  @media (min-width: $bp-md) {
+    .contact__grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: start;
+    }
+
+    .contact__cta {
+      flex-direction: row;
+      display: flex;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}
