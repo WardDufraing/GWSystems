@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { company } from "../data/company";
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <title>Algemene voorwaarden | {company.name}</title>
+    <meta
+      name="description"
+      content={`Algemene voorwaarden van ${company.name}. Lees de afspraken rond offertes, uitvoering, betaling en aansprakelijkheid.`}
+    />
+  </Fragment>
+
+  <section class="legal section section--dark">
+    <div class="container legal__inner">
+      <header class="legal__header">
+        <h1 class="legal__title">Algemene voorwaarden</h1>
+        <p class="legal__intro">
+          Deze algemene voorwaarden zijn van toepassing op offertes, overeenkomsten en werkzaamheden van {company.name}.
+        </p>
+      </header>
+
+      <div class="legal__grid">
+      <div class="legal__content">
+        <h2>1. Offertes</h2>
+        <p>
+          Offertes zijn indicatief en geldig gedurende de vermelde termijn. Een overeenkomst komt tot stand na schriftelijke bevestiging
+          of bij aanvang van de werkzaamheden.
+        </p>
+
+        <h2>2. Uitvoering</h2>
+        <p>
+          We voeren werkzaamheden uit volgens de regels van goed vakmanschap en de geldende normen. De planning is indicatief en kan
+          wijzigen door omstandigheden buiten onze controle.
+        </p>
+
+        <h2>3. Meerwerken</h2>
+        <p>
+          Meerwerken (extra materialen/uren) worden uitgevoerd na overleg en kunnen bijkomend gefactureerd worden.
+        </p>
+
+        <h2>4. Betaling</h2>
+        <p>
+          Facturen zijn betaalbaar binnen de termijn vermeld op de factuur. Bij laattijdige betaling kunnen administratieve kosten en
+          interesten aangerekend worden conform de toepasselijke wetgeving.
+        </p>
+
+        <h2>5. Aansprakelijkheid</h2>
+        <p>
+          Onze aansprakelijkheid is beperkt tot directe schade die aantoonbaar het gevolg is van een fout in onze uitvoering, en in elk
+          geval tot het bedrag van de betreffende factuur, behoudens wettelijke bepalingen.
+        </p>
+
+        <h2>6. Garantie</h2>
+        <p>
+          Garantie op materialen gebeurt volgens de voorwaarden van de fabrikant. Op uitvoering geldt een garantie volgens de geldende
+          wettelijke regels, tenzij anders overeengekomen.
+        </p>
+
+        <h2>7. Overmacht</h2>
+        <p>
+          In geval van overmacht (bv. leveringsproblemen, ziekte, extreme weersomstandigheden) kunnen verplichtingen worden opgeschort
+          zonder schadevergoeding.
+        </p>
+
+        <h2>8. Geschillen</h2>
+        <p>
+          Op deze voorwaarden is Belgisch recht van toepassing. Geschillen behoren tot de bevoegde rechtbanken van het arrondissement
+          van de maatschappelijke zetel van {company.name}, tenzij dwingend recht anders bepaalt.
+        </p>
+
+        <p class="legal__muted">Laatst bijgewerkt: {new Date().toISOString().slice(0, 10)}</p>
+      </div>
+      <aside class="legal__aside" aria-label="Hulp nodig?">
+        <div class="legal-card">
+          <h2 class="legal-card__title">Vragen?</h2>
+          <p class="legal-card__text">
+            Heb je vragen over offertes, planning of betaling? Neem gerust contact op — we helpen je graag verder.
+          </p>
+          <a class="btn btn--brand legal-card__btn" href="/contact">
+            Naar contact
+          </a>
+        </div>
+      </aside>
+    </div>
+    </div>
+  </section>
+</BaseLayout>

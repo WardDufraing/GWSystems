@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { company } from "../data/company";
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <title>Privacybeleid | {company.name}</title>
+    <meta
+      name="description"
+      content={`Privacybeleid van ${company.name}. Lees hoe we persoonsgegevens verwerken via contactaanvragen en communicatie.`}
+    />
+  </Fragment>
+
+  <section class="legal section section--dark">
+    <div class="container legal__inner">
+      <header class="legal__header">
+        <h1 class="legal__title">Privacybeleid</h1>
+        <p class="legal__intro">
+          Dit privacybeleid legt uit hoe {company.name} persoonsgegevens verwerkt wanneer je ons contacteert of gebruik maakt van onze diensten.
+        </p>
+      </header>
+  
+      <div class="legal__grid">
+        <div class="legal__content">
+          <h2>1. Wie zijn wij?</h2>
+          <p>
+            {company.name}<br />
+            {company.address.street}<br />
+            {company.address.zip} {company.address.city}<br />
+            E-mail: <a href={`mailto:${company.contact.email}`}>{company.contact.email}</a><br />
+            Telefoon: <a href={`tel:${company.contact.phoneHref}`}>{company.contact.phoneDisplay}</a>
+          </p>
+
+          <h2>2. Welke gegevens verwerken we?</h2>
+          <p>
+            Wanneer je ons contacteert (bv. via het contactformulier), kunnen we volgende gegevens verwerken: naam, e-mailadres,
+            telefoonnummer (optioneel) en de inhoud van je bericht. We verwerken enkel gegevens die je zelf aan ons bezorgt.
+          </p>
+
+          <h2>3. Waarom verwerken we deze gegevens?</h2>
+          <ul>
+            <li>Om je vraag te beantwoorden en contact met je op te nemen.</li>
+            <li>Om een offerte op te maken of afspraken te plannen.</li>
+            <li>Voor administratieve opvolging van onze dienstverlening.</li>
+          </ul>
+
+          <h2>4. Rechtsgrond</h2>
+          <p>
+            We verwerken je gegevens op basis van jouw toestemming (wanneer je ons contacteert) en/of omdat de verwerking nodig is
+            om (pre)contractuele stappen te nemen (bv. offerteaanvraag).
+          </p>
+
+          <h2>5. Bewaartermijn</h2>
+          <p>
+            We bewaren persoonsgegevens niet langer dan nodig voor het doel waarvoor ze zijn verzameld. Contactaanvragen bewaren we
+            maximaal zolang als nodig voor opvolging en administratie.
+          </p>
+
+          <h2>6. Delen met derden</h2>
+          <p>
+            We delen je gegevens niet met derden, tenzij dit noodzakelijk is voor de uitvoering van onze dienstverlening of wanneer we
+            hiertoe wettelijk verplicht zijn.
+          </p>
+
+          <h2>7. Contactformulier (Netlify Forms)</h2>
+          <p>
+            Indien we gebruik maken van een externe formulierdienst om berichten te ontvangen, worden inzendingen verwerkt via die dienst
+            enkel met het doel om je bericht aan ons te bezorgen.
+          </p>
+
+          <h2>8. Jouw rechten</h2>
+          <p>
+            Je hebt het recht op inzage, correctie, verwijdering, beperking van verwerking en bezwaar, volgens de toepasselijke wetgeving.
+            Je kan ons contacteren via <a href={`mailto:${company.contact.email}`}>{company.contact.email}</a>.
+          </p>
+
+          <h2>9. Cookies</h2>
+          <p>
+            Deze website gebruikt enkel noodzakelijke cookies voor basisfunctionaliteit, tenzij anders vermeld. Indien we in de toekomst
+            analytische cookies toevoegen, werken we dit beleid bij.
+          </p>
+
+          <h2>10. Wijzigingen</h2>
+          <p>
+            We kunnen dit privacybeleid wijzigen. De meest recente versie staat steeds op deze pagina.
+          </p>
+
+          <p class="legal__muted">Laatst bijgewerkt: {new Date().toISOString().slice(0, 10)}</p>
+        </div>
+        <aside class="legal__aside" aria-label="Hulp nodig?">
+          <div class="legal-card">
+            <h2 class="legal-card__title">Vragen?</h2>
+            <p class="legal-card__text">
+              Heb je vragen over dit document of wil je extra info? Neem gerust contact op.
+            </p>
+            <a class="btn btn--brand legal-card__btn" href="/contact">
+              Naar contact
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -5,6 +5,7 @@ export const navigation = {
         { label: "Home", href: "/" },
         { label: "Diensten", href: "/diensten" },
         { label: "Contact", href: "/contact" },
+        { label: "Over ons", href: "/over-ons" },
       ],
 
   services: company.services.map((service) => ({

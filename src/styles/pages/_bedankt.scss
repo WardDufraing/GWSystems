@@ -1,0 +1,122 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+.thank-you {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+
+  .thank-you__inner {
+    max-width: 70ch;
+    display: grid;
+    gap: $space-4;
+  }
+
+  .thank-you__title {
+    font-size: 2.2rem;
+    font-weight: $font-weight-bold;
+    color: map.get($colors, white);
+  }
+
+  .thank-you__text {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.7;
+  }
+
+  .thank-you__actions {
+    display: grid;
+    gap: $space-3;
+    margin-top: $space-2;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    .thank-you__title {
+      font-size: 2.8rem;
+    }
+
+    .thank-you__actions {
+      display: flex;
+      gap: $space-3;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}
+
+/* Success animation */
+.success {
+  width: 72px;
+  height: 72px;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+}
+
+.success__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 2px solid rgba(231, 184, 38, 0.35);
+  box-shadow: 0 0 0 6px rgba(231, 184, 38, 0.10);
+
+  transform: scale(0.85);
+  opacity: 0;
+  animation: success-pop 520ms ease forwards;
+}
+
+.success__check {
+  position: relative;
+  width: 26px;
+  height: 14px;
+  border-left: 3px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.95);
+  transform: rotate(-45deg) scale(0.9);
+  opacity: 0;
+  animation: success-check 420ms ease forwards;
+  animation-delay: 180ms;
+}
+
+@keyframes success-pop {
+  0% {
+    transform: scale(0.75);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes success-check {
+  0% {
+    opacity: 0;
+    transform: rotate(-45deg) scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(-45deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .success__ring,
+  .success__check {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .success__check {
+    transform: rotate(-45deg);
+  }
+}

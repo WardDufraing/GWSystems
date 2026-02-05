@@ -1,0 +1,58 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+.not-found {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+
+  .not-found__inner {
+    max-width: 70ch;
+    display: grid;
+    gap: $space-4;
+  }
+
+  .not-found__code {
+    font-size: clamp(4rem, 10vw, 7rem);
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    color: rgba(231, 184, 38, 0.35);
+  }
+
+  .not-found__title {
+    font-size: 2rem;
+    font-weight: $font-weight-bold;
+    color: map.get($colors, white);
+  }
+
+  .not-found__text {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+
+  .not-found__actions {
+    display: grid;
+    gap: $space-3;
+    margin-top: $space-2;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    .not-found__title {
+      font-size: 2.6rem;
+    }
+
+    .not-found__actions {
+      display: flex;
+      gap: $space-3;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}

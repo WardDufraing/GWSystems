@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { company } from "../data/company";
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <title>Pagina niet gevonden | {company.name}</title>
+    <meta
+      name="description"
+      content="Deze pagina bestaat niet of werd verplaatst."
+    />
+  </Fragment>
+
+  <section class="not-found section section--dark">
+    <div class="container not-found__inner">
+      <p class="not-found__code">404</p>
+
+      <h1 class="not-found__title">Pagina niet gevonden</h1>
+
+      <p class="not-found__text">
+        De pagina die je zoekt bestaat niet (meer) of werd verplaatst.
+      </p>
+
+      <div class="not-found__actions">
+        <a class="btn btn--brand" id="back-link" href="/">
+          Terug
+        </a>
+      
+        <a class="btn btn--outline" href="/contact">
+          Contacteer ons
+        </a>
+      </div>      
+    </div>
+  </section>
+  <script>
+    (function () {
+      const link = document.getElementById("back-link");
+      if (!link) return;
+  
+      const stored = sessionStorage.getItem("gw_return_to");
+  
+      // Avoid looping back to the 404 itself
+      if (stored && stored !== window.location.pathname) {
+        link.setAttribute("href", stored);
+      } else {
+        link.setAttribute("href", "/");
+      }
+    })();
+  </script>
+</BaseLayout>

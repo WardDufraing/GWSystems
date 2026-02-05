@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { company } from "../data/company";
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <title>Bericht verzonden | {company.name}</title>
+    <meta name="description" content="Bedankt voor je bericht. We nemen zo snel mogelijk contact met je op." />
+  </Fragment>
+
+  <section class="thank-you section section--dark">
+    <div class="container thank-you__inner">
+      <!-- Success animation -->
+      <div class="success" aria-hidden="true">
+        <span class="success__ring"></span>
+        <span class="success__check"></span>
+      </div>
+
+      <h1 class="thank-you__title">Bedankt!</h1>
+
+      <p class="thank-you__text">
+        We hebben je bericht goed ontvangen en nemen zo snel mogelijk contact met je op.
+      </p>
+
+      <div class="thank-you__actions">
+        <a class="btn btn--brand" href={`tel:${company.contact.phoneHref}`}>
+          Bel ons
+        </a>
+
+        <a class="btn btn--outline" id="return-link" href="/contact">
+          Terug
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const link = document.getElementById("return-link");
+      if (!link) return;
+
+      const sameOriginReferrer = (() => {
+        try {
+          const ref = document.referrer;
+          if (!ref) return null;
+          const url = new URL(ref);
+          if (url.origin !== window.location.origin) return null;
+          return url.pathname + url.search + url.hash;
+        } catch {
+          return null;
+        }
+      })();
+
+      const stored = sessionStorage.getItem("gw_return_to");
+
+      // Prefer same-origin referrer, then stored value, then fallback
+      const target = sameOriginReferrer || stored || "/contact";
+      link.setAttribute("href", target);
+    })();
+  </script>
+</BaseLayout>

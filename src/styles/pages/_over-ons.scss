@@ -1,0 +1,97 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+/* ------------------------------
+   Hero
+------------------------------ */
+
+.about-hero {
+  .about-hero__inner {
+    display: grid;
+    gap: $space-3;
+  }
+
+  .about-hero__title {
+    font-size: 2.2rem;
+    font-weight: $font-weight-bold;
+    color: map.get($colors, white);
+  }
+
+  .about-hero__subtitle {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+  }
+
+  @media (min-width: $bp-md) {
+    .about-hero__title {
+      font-size: 3rem;
+    }
+  }
+}
+
+/* ------------------------------
+   Content
+------------------------------ */
+
+.about {
+  .about__inner {
+    display: grid;
+    gap: $space-5;
+  }
+
+  .about__content {
+    display: grid;
+    gap: $space-4;
+
+    p {
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.75;
+
+      strong {
+        color: map.get($colors, white);
+        font-weight: $font-weight-semibold;
+      }
+    }
+
+    h2 {
+      margin-top: $space-3;
+      font-size: 1.3rem;
+      font-weight: $font-weight-semibold;
+      color: map.get($colors, white);
+    }
+
+    ul {
+      display: grid;
+      gap: $space-2;
+      padding-left: 1.1rem;
+
+      li {
+        color: rgba(255, 255, 255, 0.75);
+
+        &::marker {
+          color: map.get($colors, brand);
+        }
+      }
+    }
+  }
+
+  .about__actions {
+    display: grid;
+    gap: $space-3;
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $bp-md) {
+    .about__actions {
+      display: flex;
+      gap: $space-3;
+
+      .btn {
+        width: auto;
+      }
+    }
+  }
+}

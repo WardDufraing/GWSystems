@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { company } from "../data/company";
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <title>Over ons | {company.name}</title>
+    <meta
+      name="description"
+      content={`${company.name} is een betrouwbare elektricien gespecialiseerd in elektriciteit, domotica, laadpalen en thuisbatterijen. Lees hoe we werken en waar we voor staan.`}
+    />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="about-hero section section--dark">
+    <div class="container about-hero__inner">
+      <h1 class="about-hero__title">Over ons</h1>
+      <p class="about-hero__subtitle">
+        Betrouwbaar vakmanschap, duidelijke communicatie en een nette afwerking.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="about section section--dark sep sep--top sep--bottom">
+    <div class="container about__inner">
+      <div class="about__content">
+        <p>
+          <strong>{company.name}</strong> is een gespecialiseerde elektricien met focus op
+          kwaliteit, veiligheid en duidelijkheid. We helpen zowel particulieren als
+          kleine bedrijven met elektrische installaties en slimme oplossingen.
+        </p>
+
+        <p>
+          Van kleine herstellingen tot volledige installaties: we denken mee vanaf het
+          begin en zorgen voor een oplossing die correct, veilig en toekomstgericht is.
+          Geen onnodige complexiteit, wel vakmanschap dat je kan vertrouwen.
+        </p>
+
+        <h2>Hoe we werken</h2>
+        <ul class="list--brand">
+          <li>We luisteren naar je vraag en bekijken de situatie ter plaatse</li>
+          <li>Je krijgt een duidelijke uitleg en eerlijke inschatting</li>
+          <li>We werken volgens de geldende normen (AREI)</li>
+          <li>Alles wordt proper en netjes afgewerkt</li>
+        </ul>
+
+        <h2>Waarvoor kan je bij ons terecht?</h2>
+        <ul class="list--brand">
+          <li>Elektriciteit (nieuwbouw, renovatie en herstellingen)</li>
+          <li>Domotica en slimme schakelingen</li>
+          <li>Laadpalen voor elektrische wagens</li>
+          <li>Thuisbatterijen en energie-oplossingen</li>
+        </ul>
+
+        <p>
+          Actief in <strong>{company.serviceArea}</strong>. Heb je een vraag of wil je een
+          offerte aanvragen? Neem gerust contact op.
+        </p>
+      </div>
+
+      <div class="about__actions">
+        <a class="btn btn--brand" href="/contact">
+          Contacteer ons
+        </a>
+        <a class="btn btn--outline" href="/diensten">
+          Bekijk onze diensten
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

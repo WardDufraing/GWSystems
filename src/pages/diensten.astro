@@ -17,7 +17,7 @@ const serviceImages = {
 ---
 <BaseLayout>
   <Fragment slot="head">
-    <title>Diensten | GW Systems</title>
+    <title>Diensten | {company.name}</title>
     <meta
       name="description"
       content="Een overzicht van alle diensten die GW Systems aanbiedt: elektriciteit, domotica, laadpalen en thuisbatterijen."
@@ -73,7 +73,7 @@ const serviceImages = {
               </div>
 
               {s.bullets?.length && (
-                <ul class="dienst__bullets">
+                <ul class="dienst__bullets list--brand">
                   {s.bullets.map((b) => <li class="dienst__bullet">{b}</li>)}
                 </ul>
               )}

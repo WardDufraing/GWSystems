@@ -5,10 +5,12 @@ import TrustBanner from '../components/blocks/TrustBanner.astro';
 import Services from '../components/blocks/ServicesSection.astro';
 import Workflow from '../components/blocks/Workflow.astro';
 import CTA from '../components/blocks/CTA.astro';
+
+import { company } from '../data/company';
 ---
 <BaseLayout>
     <Fragment slot="head">
-        <title>GW Systems</title>
+        <title>{company.name}</title>
         <meta
           name="description"
           content="GW Systems is uw betrouwbare elektricien voor slimme en duurzame installaties. Wij bieden vakkundige plaatsing, nette afwerking en transparante prijzen."

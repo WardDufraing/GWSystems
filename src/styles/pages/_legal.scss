@@ -1,0 +1,131 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+.legal {
+  .legal__inner {
+    display: grid;
+    gap: $space-6;
+  }
+
+  .legal__header {
+    display: grid;
+    gap: $space-3;
+  }
+
+  .legal__title {
+    font-size: 2.2rem;
+    font-weight: $font-weight-bold;
+    color: map.get($colors, white);
+    line-height: 1.1;
+  }
+
+  .legal__intro {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.7;
+    max-width: 80ch;
+  }
+
+  /* NEW: 2-column layout */
+  .legal__grid {
+    display: grid;
+    gap: $space-6;
+    align-items: start;
+  }
+
+  .legal__aside {
+    /* mobile: just normal flow */
+  }
+
+  /* CTA card */
+  .legal-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    padding: $space-5;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+
+  .legal-card__title {
+    font-size: 1.2rem;
+    font-weight: $font-weight-semibold;
+    color: map.get($colors, white);
+    margin-bottom: $space-2;
+  }
+
+  .legal-card__text {
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    margin-bottom: $space-4;
+  }
+
+  .legal-card__btn {
+    width: 100%;
+  }
+
+  /* Content stays readable */
+  .legal__content {
+    max-width: 90ch;
+    display: grid;
+    gap: $space-4;
+
+    h2 {
+      margin-top: $space-3;
+      font-size: 1.2rem;
+      font-weight: $font-weight-semibold;
+      color: map.get($colors, white);
+    }
+
+    p,
+    li {
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.75;
+    }
+
+    ul {
+      display: grid;
+      gap: $space-2;
+      padding-left: 1.1rem;
+
+      li::marker {
+        color: map.get($colors, brand);
+      }
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.92);
+      text-decoration: underline;
+      text-decoration-color: rgba(231, 184, 38, 0.6);
+      text-underline-offset: 4px;
+
+      &:hover {
+        color: map.get($colors, white);
+      }
+    }
+  }
+
+  .legal__muted {
+    margin-top: $space-2;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: $bp-md) {
+    .legal__title {
+      font-size: 3rem;
+    }
+
+    .legal__grid {
+      grid-template-columns: 1.4fr 0.6fr;
+    }
+
+    /* Make card stick a bit on desktop (optional but nice) */
+    .legal-card {
+      position: sticky;
+      top: 110px; /* matches your header offset vibe */
+    }
+
+    .legal-card__btn {
+      width: auto;
+    }
+  }
+}

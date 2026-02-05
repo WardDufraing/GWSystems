@@ -18,7 +18,7 @@
 /* Components */
 @use "components/buttons";
 @use "components/cards";
-
+@use "components/lists";
 
 /* Blocks */
 @use "components/hero";
@@ -30,3 +30,7 @@
 /* Pages */
 @use "pages/diensten";
 @use "pages/contact";
+@use "pages/bedankt";
+@use "pages/legal";
+@use "pages/not-found";
+@use "pages/over-ons";

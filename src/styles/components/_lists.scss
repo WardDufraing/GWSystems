@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "../abstracts/variables" as *;
+
+.list--brand {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: map.get($colors, brand);
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 4px rgba(231, 184, 38, 0.15);
+    }
+  }
+}
