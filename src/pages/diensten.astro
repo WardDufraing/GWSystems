@@ -98,10 +98,12 @@ const serviceImages = {
 
               <div class="dienst__faq-list">
                 {s.faq.map((item) => (
-                  <details class="faq-item">
+                  <details class="faq-item" name={`FAQ-${s.label}`}>
                     <summary class="faq-item__summary">{item.q}</summary>
                     <div class="faq-item__body">
-                      <p>{item.a}</p>
+                      <div class="faq-item__content">
+                        <p>{item.a}</p>
+                      </div>
                     </div>
                   </details>
                 ))}

@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import { resolve } from 'path';
 
 export default defineConfig({
-  site: 'https://StudioFraktal.be',
+  site: 'https://GWSystems.be',
   scopedStyleStrategy: 'where',
   vite: {
     resolve: {
@@ -13,5 +13,6 @@ export default defineConfig({
         '@content': resolve('./src/content'),
       }
     }
-  }
+  },
+  output: 'static',
 });

@@ -167,67 +167,113 @@
     display: block;
   }
 
-  /* FAQ - full width feel, less padding */
   .dienst__faq {
     margin-top: $space-5;
     margin-bottom: $space-5;
-  }
 
-  .dienst__faq-title {
-    font-size: 1.1rem;
-    font-weight: $font-weight-semibold;
-    color: map.get($colors, white);
-    margin-bottom: $space-3;
-  }
-
-  .dienst__faq-list {
-    display: grid;
-    gap: $space-2;
-  }
-
-  .faq-item {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 14px;
-    overflow: hidden;
-  }
-
-  .faq-item__summary {
-    cursor: pointer;
-    padding: $space-3 $space-4;
-
-    color: rgba(255, 255, 255, 0.92);
-    font-weight: $font-weight-semibold;
-
-    list-style: none;
-
-    &::-webkit-details-marker {
-      display: none;
+    .dienst__faq-title {
+        font-size: 1.1rem;
+        font-weight: $font-weight-semibold;
+        color: map.get($colors, white);
+        margin-bottom: $space-3;
     }
 
-    position: relative;
-
-    &::after {
-      content: "+";
-      position: absolute;
-      right: $space-4;
-      top: 50%;
-      transform: translateY(-50%);
-      color: map.get($colors, brand);
-      font-weight: $font-weight-bold;
+    .dienst__faq-list {
+        display: grid;
+        gap: $space-2;
     }
+
+    .faq-item {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        border-radius: 14px;
+        overflow: hidden;
+
+        /* Animation */
+        display: grid;
+        grid-template-rows: auto 0fr;
+        transition: grid-template-rows 300ms ease;
+        &[open]{
+            grid-template-rows: auto 1fr;
+            .faq-item__body .faq-item__content{
+                max-height: 500px;
+                transform: translateY(0);
+            }
+            .faq-item__summary:hover::after {
+                transform: translateY(-50%) rotate(45deg) scale(1.2);
+            }
+            .faq-item__summary::after {
+                transform: translateY(-50%) rotate(45deg);
+            }
+        }
+
+        .faq-item__summary {
+            cursor: pointer;
+            padding: $space-3 $space-4;
+            padding-right: $space-6;
+        
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: $font-weight-semibold;
+        
+            list-style: none;
+        
+            &::-webkit-details-marker {
+              display: none;
+            }
+        
+            position: relative;
+
+            &:hover::after{
+                transform: translateY(-50%) scale(1.2);
+            }
+        
+            &::after {
+              content: "+";
+              position: absolute;
+              right: $space-4;
+              top: 50%;
+              transform: translateY(-50%) rotate(0deg);
+              color: map.get($colors, brand);
+              font-weight: $font-weight-bold;
+              transition: transform 260ms ease;
+            }
+
+            &:focus-visible {
+                outline: 2px solid map.get($colors, brand);
+                outline-offset: 3px;
+                border-radius: 10px;
+            }
+        }
+
+        .faq-item__body {
+            overflow: hidden;
+
+            .faq-item__content {
+                padding: 0 $space-4 $space-4 $space-4;
+
+                color: rgba(255, 255, 255, 0.75);
+                line-height: 1.75;
+                max-width: 85ch;
+
+                max-height: 0;
+                transform: translateY(-6px);
+                transition: max-height 220ms ease, transform 220ms ease;
+            }
+          }
+      }
   }
 
-  .faq-item[open] .faq-item__summary::after {
-    content: "–";
-  }
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-item__summary::after,
+    .faq-item__body,
+    .faq-item__content {
+      transition: none;
+    }
+}
 
-  .faq-item__body {
-    padding: 0 $space-4 $space-4 $space-4;
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 1.75;
-    max-width: 85ch;
-  }
+  
 
   .dienst__actions {
     display: grid;
