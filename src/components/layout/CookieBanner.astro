@@ -1,0 +1,85 @@
+---
+import { analytics } from "../../data/company"; // adjust path if needed
+const GA_ID = analytics.ga4MeasurementId;
+---
+
+<div class="cookie-banner" data-cookie-banner hidden>
+  <div class="cookie-banner__inner">
+    <p class="cookie-banner__text">
+      We gebruiken cookies voor anonieme statistieken (Google Analytics) om de website te verbeteren.
+      Je kan je keuze altijd aanpassen via “Cookie-instellingen”.
+    </p>
+
+    <div class="cookie-banner__actions">
+      <button class="btn btn--outline" type="button" data-cookie-reject>
+        Weigeren
+      </button>
+      <button class="btn btn--brand" type="button" data-cookie-accept>
+        Accepteren
+      </button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ GA_ID }}>
+  (function () {
+    const KEY = "gw_cookie_consent"; // 'accepted' | 'rejected'
+    const banner = document.querySelector("[data-cookie-banner]");
+    const acceptBtn = document.querySelector("[data-cookie-accept]");
+    const rejectBtn = document.querySelector("[data-cookie-reject]");
+
+    if (!banner || !acceptBtn || !rejectBtn) return;
+
+    function setConsent(state) {
+      localStorage.setItem(KEY, state);
+      banner.hidden = true;
+
+      if (typeof gtag !== "function") return;
+
+      if (state === "accepted") {
+        gtag("consent", "update", {
+          analytics_storage: "granted",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        });
+
+        // Load GA only after consent
+        if (GA_ID && !window.__ga_loaded) {
+          window.__ga_loaded = true;
+
+          const s1 = document.createElement("script");
+          s1.async = true;
+          s1.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+          document.head.appendChild(s1);
+
+          gtag("js", new Date());
+          gtag("config", GA_ID, { anonymize_ip: true });
+        }
+      } else {
+        gtag("consent", "update", {
+          analytics_storage: "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        });
+      }
+    }
+
+    const existing = localStorage.getItem(KEY);
+    if (!existing) {
+      banner.hidden = false;
+    } else if (existing === "accepted") {
+      // User already accepted earlier — enable and load GA
+      setConsent("accepted");
+    }
+
+    acceptBtn.addEventListener("click", () => setConsent("accepted"));
+    rejectBtn.addEventListener("click", () => setConsent("rejected"));
+
+    // Expose a way to reopen banner from footer link
+    window.gwOpenCookieSettings = function () {
+      banner.hidden = false;
+    };
+  })();
+</script>

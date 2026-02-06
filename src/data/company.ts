@@ -190,3 +190,6 @@ export const company = {
       },
   } as const;
   
+  export const analytics = {
+    ga4MeasurementId: "G-6W3K8F7BB1",
+  };
