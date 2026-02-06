@@ -32,11 +32,14 @@ import CookieBanner from "../components/layout/CookieBanner.astro";
     <meta name="theme-color" content="#0E0E0E" />
 
     <!-- Set Default consent for GA -->
-    <script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: unknown[]) {
+      function gtag(...args) {
         window.dataLayer.push(args);
       }    
+
+      window.gtag = gtag;
+
       gtag('consent', 'default', {
         analytics_storage: 'denied',
         ad_storage: 'denied',

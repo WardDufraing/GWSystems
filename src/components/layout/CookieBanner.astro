@@ -28,11 +28,16 @@ const GA_ID = analytics.ga4MeasurementId;
     const acceptBtn = document.querySelector("[data-cookie-accept]");
     const rejectBtn = document.querySelector("[data-cookie-reject]");
 
+    console.log("GA_ID:", GA_ID);
+
     if (!banner || !acceptBtn || !rejectBtn) return;
 
     function setConsent(state) {
       localStorage.setItem(KEY, state);
       banner.hidden = true;
+      console.log("set Consent:", state);
+      console.log("typeof gtag:", typeof gtag);
+
 
       if (typeof gtag !== "function") return;
 
@@ -44,6 +49,8 @@ const GA_ID = analytics.ga4MeasurementId;
           ad_personalization: "denied",
         });
 
+        console.log("window__ga_loaded:", window.__ga_loaded);
+
         // Load GA only after consent
         if (GA_ID && !window.__ga_loaded) {
           window.__ga_loaded = true;
@@ -52,6 +59,7 @@ const GA_ID = analytics.ga4MeasurementId;
           s1.async = true;
           s1.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
           document.head.appendChild(s1);
+          console.log("child appended:", s1);
 
           gtag("js", new Date());
           gtag("config", GA_ID, { anonymize_ip: true });
