@@ -192,4 +192,5 @@ export const company = {
   
   export const analytics = {
     ga4MeasurementId: "G-6W3K8F7BB1",
+    googleAdsId: "AW-XXXXXXXXXX", // TODO: replace
   };

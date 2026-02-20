@@ -1,88 +1,188 @@
 ---
-import { analytics } from "../../data/company"; // adjust path if needed
+import { analytics } from "../../data/company";
+
 const GA_ID = analytics.ga4MeasurementId;
+const AW_ID = analytics.googleAdsId;
 ---
 
-<div class="cookie-banner" data-cookie-banner hidden>
-  <div class="cookie-banner__inner">
-    <p class="cookie-banner__text">
-      We gebruiken cookies voor anonieme statistieken (Google Analytics) om de website te verbeteren.
+<dialog class="cookie-dialog" data-cookie-dialog aria-labelledby="cookie-title" aria-describedby="cookie-desc">
+  <form method="dialog" class="cookie-dialog__panel">
+    <header class="cookie-dialog__header">
+      <h2 id="cookie-title" class="cookie-dialog__title">Cookie-instellingen</h2>
+      <button type="button" class="cookie-dialog__close" data-cookie-close aria-label="Sluiten">×</button>
+    </header>
+
+    <p id="cookie-desc" class="cookie-dialog__text">
+      We gebruiken cookies om de website goed te laten werken, anonieme statistieken te verzamelen en (optioneel) marketing te meten.
       Je kan je keuze altijd aanpassen via “Cookie-instellingen”.
     </p>
 
-    <div class="cookie-banner__actions">
-      <button class="btn btn--outline" type="button" data-cookie-reject>
-        Weigeren
-      </button>
-      <button class="btn btn--brand" type="button" data-cookie-accept>
-        Accepteren
-      </button>
+    <div class="cookie-dialog__options" role="group" aria-label="Cookie categorieën">
+      <label class="cookie-dialog__row cookie-dialog__row--locked">
+        <input type="checkbox" checked disabled />
+        <span>
+          <strong>Noodzakelijk</strong><br />
+          Nodig om de website correct te laten werken. Altijd ingeschakeld.
+        </span>
+      </label>
+
+      <label class="cookie-dialog__row">
+        <input type="checkbox" data-consent="preferences" />
+        <span>
+          <strong>Voorkeuren</strong><br />
+          Onthoudt je instellingen (bv. voorkeuren of UI-keuzes).
+        </span>
+      </label>
+
+      <label class="cookie-dialog__row">
+        <input type="checkbox" data-consent="statistics" />
+        <span>
+          <strong>Statistieken</strong><br />
+          Helpt ons de site te verbeteren (Google Analytics 4).
+        </span>
+      </label>
+
+      <label class="cookie-dialog__row">
+        <input type="checkbox" data-consent="marketing" />
+        <span>
+          <strong>Marketing</strong><br />
+          Meten van advertenties en prestaties (Google Ads).
+        </span>
+      </label>
     </div>
-  </div>
-</div>
 
-<script define:vars={{ GA_ID }}>
+    <footer class="cookie-dialog__actions">
+      <button type="button" class="btn btn--outline" data-deny-all>Alles weigeren</button>
+      <button type="button" class="btn btn--outline" data-save>Voorkeuren opslaan</button>
+      <button type="button" class="btn btn--brand" data-accept-all>Alles accepteren</button>
+    </footer>
+
+    <p class="cookie-dialog__links">
+      <a href="/privacy">Privacy</a> • <a href="/voorwaarden">Voorwaarden</a>
+    </p>
+  </form>
+</dialog>
+
+<script define:vars={{ GA_ID, AW_ID }}>
   (function () {
-    const KEY = "gw_cookie_consent"; // 'accepted' | 'rejected'
-    const banner = document.querySelector("[data-cookie-banner]");
-    const acceptBtn = document.querySelector("[data-cookie-accept]");
-    const rejectBtn = document.querySelector("[data-cookie-reject]");
+    // Necessary consent cookie (allowed)
+    const COOKIE_NAME = "gw_consent_v1";
+    const COOKIE_MAX_AGE_DAYS = 180; // 6 months
+    const VERSION = 1;
 
-    console.log("GA_ID:", GA_ID);
+    const dialog = document.querySelector("[data-cookie-dialog]");
+    if (!dialog) return;
 
-    if (!banner || !acceptBtn || !rejectBtn) return;
+    const elPref = dialog.querySelector('[data-consent="preferences"]');
+    const elStat = dialog.querySelector('[data-consent="statistics"]');
+    const elMkt  = dialog.querySelector('[data-consent="marketing"]');
 
-    function setConsent(state) {
-      localStorage.setItem(KEY, state);
-      banner.hidden = true;
+    const btnAcceptAll = dialog.querySelector("[data-accept-all]");
+    const btnDenyAll   = dialog.querySelector("[data-deny-all]");
+    const btnSave      = dialog.querySelector("[data-save]");
+    const btnClose     = dialog.querySelector("[data-cookie-close]");
 
+    function getCookie(name) {
+      const m = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+      return m ? decodeURIComponent(m[2]) : null;
+    }
 
-      if (typeof gtag !== "function") return;
+    function setCookie(name, value, days) {
+      const maxAge = days * 24 * 60 * 60;
+      document.cookie = `${name}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax`;
+    }
 
-      if (state === "accepted") {
-        gtag("consent", "update", {
-          analytics_storage: "granted",
-          ad_storage: "denied",
-          ad_user_data: "denied",
-          ad_personalization: "denied",
-        });
-
-
-        // Load GA only after consent
-        if (GA_ID && !window.__ga_loaded) {
-
-          const s1 = document.createElement("script");
-          s1.async = true;
-          s1.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-          document.head.appendChild(s1);
-
-          gtag("js", new Date());
-          gtag("config", GA_ID, { anonymize_ip: true });
-        }
-      } else {
-        gtag("consent", "update", {
-          analytics_storage: "denied",
-          ad_storage: "denied",
-          ad_user_data: "denied",
-          ad_personalization: "denied",
-        });
+    function readConsent() {
+      const raw = getCookie(COOKIE_NAME);
+      if (!raw) return null;
+      try {
+        const parsed = JSON.parse(raw);
+        if (!parsed || parsed.v !== VERSION) return null;
+        return parsed;
+      } catch {
+        return null;
       }
     }
 
-    const existing = localStorage.getItem(KEY);
-    if (!existing) {
-      banner.hidden = false;
-    } else if (existing === "accepted") {
-      // User already accepted earlier — enable and load GA
-      setConsent("accepted");
+    function writeConsent(consent) {
+      setCookie(COOKIE_NAME, JSON.stringify({ v: VERSION, ...consent, ts: Date.now() }), COOKIE_MAX_AGE_DAYS);
     }
 
-    acceptBtn.addEventListener("click", () => setConsent("accepted"));
-    rejectBtn.addEventListener("click", () => setConsent("rejected"));
+    function applyToGoogle(consent) {
+      // Ensure gtag exists (it should from <head>)
+      if (typeof window.gtag !== "function") return;
 
-    // Expose a way to reopen banner from footer link
+      const analyticsGranted = consent.statistics ? "granted" : "denied";
+      const adsGranted       = consent.marketing  ? "granted" : "denied";
+
+      // Consent Mode v2 update (Google doc: default -> update) :contentReference[oaicite:11]{index=11}
+      gtag("consent", "update", {
+        analytics_storage: analyticsGranted,
+        ad_storage: adsGranted,
+        ad_user_data: adsGranted,
+        ad_personalization: adsGranted
+      });
+
+      // If analytics now granted, send the initial page_view we held back
+      if (consent.statistics) {
+        gtag("event", "page_view");
+      }
+    }
+
+    function syncUI(consent) {
+      elPref.checked = !!consent.preferences;
+      elStat.checked = !!consent.statistics;
+      elMkt.checked  = !!consent.marketing;
+    }
+
+    function openDialog() {
+      if (!dialog.open && typeof dialog.showModal === "function") dialog.showModal();
+    }
+
+    function closeDialog() {
+      if (dialog.open) dialog.close();
+    }
+
+    function setConsent(consent) {
+      writeConsent(consent);
+      applyToGoogle(consent);
+      closeDialog();
+    }
+
+    // Button handlers
+    btnAcceptAll?.addEventListener("click", () => setConsent({ preferences: true, statistics: true, marketing: true }));
+    btnDenyAll?.addEventListener("click",   () => setConsent({ preferences: false, statistics: false, marketing: false }));
+    btnSave?.addEventListener("click",      () => setConsent({
+      preferences: elPref.checked,
+      statistics: elStat.checked,
+      marketing: elMkt.checked
+    }));
+
+    // Close = treat as "deny all" (so we store a choice and don't keep nagging)
+    btnClose?.addEventListener("click", () => setConsent({ preferences: false, statistics: false, marketing: false }));
+
+    // Prevent ESC dismiss without recording a choice
+    dialog.addEventListener("cancel", (e) => {
+      e.preventDefault();
+      setConsent({ preferences: false, statistics: false, marketing: false });
+    });
+
+    // First load: if existing consent, apply it immediately; else open dialog
+    const existing = readConsent();
+    if (existing) {
+      syncUI(existing);
+      applyToGoogle(existing);
+    } else {
+      // Default UI state = all off (except necessary)
+      syncUI({ preferences: false, statistics: false, marketing: false });
+      openDialog();
+    }
+
+    // Expose global for footer link
     window.gwOpenCookieSettings = function () {
-      banner.hidden = false;
+      const current = readConsent() || { preferences: false, statistics: false, marketing: false };
+      syncUI(current);
+      openDialog();
     };
   })();
 </script>

@@ -16,5 +16,6 @@ export const navigation = {
   footer: [
     { label: "Privacy", href: "/privacy" },
     { label: "Voorwaarden", href: "/voorwaarden" },
+    { label: "Cookie-instellingen", href: "#cookie-instellingen" },
   ],
 } as const;

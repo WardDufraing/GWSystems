@@ -70,7 +70,13 @@ const year = new Date().getFullYear();
       <div class="footer__legal" aria-label="Juridisch">
         {navigation.footer.map((item, i) => (
           <>
-            <a class="footer__link" href={item.href}>{item.label}</a>
+            {item.href === "#cookie-instellingen" ? (
+              <button type="button" class="footer__link" onclick="window.gwOpenCookieSettings?.()">
+                {item.label}
+              </button>
+            ) : (
+              <a href={item.href} class="footer__link">{item.label}</a>
+            )}
             {i < navigation.footer.length - 1 && <span class="footer__dot" aria-hidden="true">•</span>}
           </>
         ))}

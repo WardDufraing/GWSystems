@@ -3,6 +3,10 @@ import "../styles/main.scss";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import CookieBanner from "../components/layout/CookieBanner.astro";
+
+import { analytics } from "../data/company"; // adjust path if needed
+const GA_ID = analytics.ga4MeasurementId;
+const ADS_ID = analytics.googleAdsId;
 ---
 
 <!DOCTYPE html>
@@ -31,8 +35,7 @@ import CookieBanner from "../components/layout/CookieBanner.astro";
     <meta name="msapplication-TileColor" content="#0E0E0E" />
     <meta name="theme-color" content="#0E0E0E" />
 
-    <!--
-    <script is:inline>
+    <script is:inline define:vars={{ GA_ID, ADS_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(...args) {
         window.dataLayer.push(args);
@@ -40,19 +43,25 @@ import CookieBanner from "../components/layout/CookieBanner.astro";
 
       window.gtag = gtag;
 
+      // Consent Mode v2 default: denied
       gtag('consent', 'default', {
-        analytics_storage: 'denied',
         ad_storage: 'denied',
+        analytics_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied',
-        functionality_storage: 'granted',
-        security_storage: 'granted'
+        wait_for_update: 500
       });
-    </script> -->
 
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="092ddd39-f038-469c-93b0-d1cd98317959" data-blockingmode="auto" type="text/javascript"></script>
-    
+      gtag('js', new Date());
 
+      // GA4 config: hold page_view until analytics consent is granted
+      gtag('config', GA_ID, { send_page_view: false });
+
+      // Google Ads base config (replace AW id)
+      gtag('config', ADS_ID);
+    </script>     
+    <!-- Load Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W3K8F7BB1"></script>
 
     <!-- Page-specific head content (title/meta) -->
     <slot name="head" />
@@ -67,7 +76,7 @@ import CookieBanner from "../components/layout/CookieBanner.astro";
     </main>
 
     <Footer />
-    <!--<CookieBanner/ >  -->
+    <CookieBanner/ > 
 
     <script>
       (function () {
