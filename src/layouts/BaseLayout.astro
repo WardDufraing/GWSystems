@@ -31,7 +31,7 @@ import CookieBanner from "../components/layout/CookieBanner.astro";
     <meta name="msapplication-TileColor" content="#0E0E0E" />
     <meta name="theme-color" content="#0E0E0E" />
 
-    <!-- Set Default consent for GA -->
+    <!--
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(...args) {
@@ -48,7 +48,9 @@ import CookieBanner from "../components/layout/CookieBanner.astro";
         functionality_storage: 'granted',
         security_storage: 'granted'
       });
-    </script>
+    </script> -->
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="092ddd39-f038-469c-93b0-d1cd98317959" data-blockingmode="auto" type="text/javascript"></script>
     
 
 
@@ -65,7 +67,7 @@ import CookieBanner from "../components/layout/CookieBanner.astro";
     </main>
 
     <Footer />
-    <CookieBanner/ >
+    <!--<CookieBanner/ >  -->
 
     <script>
       (function () {

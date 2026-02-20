@@ -1,0 +1,196 @@
+@use "../abstracts/variables" as *;
+
+/* ---------------------------------------------
+   Enable animatable angle
+--------------------------------------------- */
+@property --eb-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+/* ---------------------------------------------
+   BASE
+--------------------------------------------- */
+.electric-border {
+  position: relative;
+  isolation: isolate;
+
+  --eb-border: 2px;
+  --eb-radius: 16px;
+  --eb-color: 231, 184, 38;
+  --eb-speed: 1.4s;
+
+  border-radius: var(--eb-radius);
+}
+
+/* Shared ring shell */
+.electric-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: var(--eb-border);
+  border-radius: inherit;
+  pointer-events: none;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+/* Soft halo */
+.electric-border::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    closest-side,
+    rgba(var(--eb-color), 0.18),
+    rgba(var(--eb-color), 0)
+  );
+
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 180ms ease;
+}
+
+/* =============================================
+   BUTTON VARIANT (top + bottom idle, merge on hover)
+============================================= */
+  /* Idle state: two subtle lines (top & bottom) */
+  .electric-border--button::before {
+    opacity: 1;
+  
+    background:
+      linear-gradient(
+        to right,
+        transparent 20%,
+        rgba(var(--eb-color), 0.9) 50%,
+        transparent 80%
+      ) top / 100% 2px no-repeat,
+  
+      linear-gradient(
+        to right,
+        transparent 20%,
+        rgba(var(--eb-color), 0.9) 50%,
+        transparent 80%
+      ) bottom / 100% 2px no-repeat;
+  
+    filter: blur(0.25px);
+  }
+  
+  /* On hover: switch to rotating conic pulse */
+  .electric-border--button:hover::before,
+  .electric-border--button:focus-visible::before {
+  
+    background: conic-gradient(
+      from var(--eb-angle),
+      rgba(var(--eb-color), 0) 00deg,
+      rgba(var(--eb-color), 0) 50deg,
+      rgba(var(--eb-color), 1) 70deg,
+      rgba(var(--eb-color), 0) 100deg,
+      rgba(var(--eb-color), 0) 360deg
+    );
+  
+    animation:
+      eb-spin var(--eb-speed) linear 1,
+      eb-button-bright 600ms ease-in-out 1,
+      eb-fade-out var(--eb-speed) ease-out 1;
+  
+    filter: blur(0.35px);
+  }
+
+  .electric-border--button::before {
+    animation: eb-idle-flicker 3s ease-in-out infinite;
+  }
+  
+
+/* =============================================
+   DIALOG VARIANT (clean energy wave)
+============================================= */
+
+.electric-border--dialog::before {
+  opacity: 1;
+  background: linear-gradient(
+    -90deg,
+    rgba(var(--eb-color), 0.25),
+    rgba(var(--eb-color), 0.55),
+    rgba(var(--eb-color), 0.25)
+  );
+
+  filter: blur(0.25px);
+}
+
+/* Hover = subtle flicker only */
+.electric-border--dialog:hover::before,
+.electric-border--dialog:focus-within::before {
+  animation: eb-flicker 700ms ease-in-out 1;
+}
+
+.electric-border--dialog:hover::after {
+  opacity: 1;
+}
+
+/* When opened: single energy wave travels once */
+.electric-border--dialog[open]::before {
+  background: conic-gradient(
+    from var(--eb-angle),
+    rgba(var(--eb-color), 0.25),
+    rgba(var(--eb-color), 0.25) 250deg,
+    rgba(var(--eb-color), 1) 270deg,
+    rgba(var(--eb-color), 0.25) 290deg,
+    rgba(var(--eb-color), 0.25) 360deg
+  );
+  filter: blur(0.35px);
+
+  animation: eb-spin 1.2s linear 1, eb-fade-out var(--eb-speed) ease-out 1;
+}
+
+/* =============================================
+   ANIMATIONS
+============================================= */
+
+@keyframes eb-spin {
+  to { --eb-angle: 360deg; }
+}
+
+@keyframes eb-bright {
+  0%, 100% { filter: blur(0.35px) brightness(1); }
+  50% { filter: blur(0.45px) brightness(1.25); }
+}
+
+@keyframes eb-flicker {
+  0%, 100% { filter: blur(0.0px) brightness(1); }
+  40% { filter: blur(0.35px) brightness(1.2); }
+}
+
+@keyframes eb-idle-flicker {
+    0%,100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+@keyframes eb-fade-out {
+    0%, 75% { opacity: 1; }
+    100% { opacity: 0; }
+}
+/* =============================================
+   Reduced motion
+============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .electric-border::before {
+    animation: none !important;
+  }
+}

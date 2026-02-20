@@ -35,8 +35,6 @@ const GA_ID = analytics.ga4MeasurementId;
     function setConsent(state) {
       localStorage.setItem(KEY, state);
       banner.hidden = true;
-      console.log("set Consent:", state);
-      console.log("typeof gtag:", typeof gtag);
 
 
       if (typeof gtag !== "function") return;
@@ -49,17 +47,14 @@ const GA_ID = analytics.ga4MeasurementId;
           ad_personalization: "denied",
         });
 
-        console.log("window__ga_loaded:", window.__ga_loaded);
 
         // Load GA only after consent
         if (GA_ID && !window.__ga_loaded) {
-          window.__ga_loaded = true;
 
           const s1 = document.createElement("script");
           s1.async = true;
           s1.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
           document.head.appendChild(s1);
-          console.log("child appended:", s1);
 
           gtag("js", new Date());
           gtag("config", GA_ID, { anonymize_ip: true });

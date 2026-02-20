@@ -17,7 +17,7 @@ import { company } from "../../data/company";
     <div class="services__grid">
       {company.services.map((service) => (
         <a
-          class="services__card"
+          class="services__card electric-border electric-border--button"
           href={`/diensten#${service.id}`}
         >
           <h3 class="services__card-title">{service.label}</h3>
